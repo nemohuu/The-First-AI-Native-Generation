@@ -5,601 +5,419 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The First AI-Native Generation</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
-
   <style>
-   :root{
-  --page-bg:#f8f4ec;
-  --paper-bg:#fcfaf6;
-  --text-main:#1f1f1b;
-  --text-soft:#666055;
-  --rule:#d9d2c7;
-  --gold:#b88a3b;
-  --ink:#111111;
-  --nav-h:46px;
-  --body-w:700px;
-  --full-w:1180px;
-}
-
-*{box-sizing:border-box}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  color:var(--text-main);
-  background:
-    radial-gradient(circle at top left, rgba(184,138,59,.08), transparent 30%),
-    linear-gradient(180deg, #faf6ee 0%, #f8f4ec 25%, #f8f4ec 100%);
-  font-family:Georgia, "Times New Roman", serif;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  line-height:1.85;
-}
-
-a{color:inherit}
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-.top-progress{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:100;
-  background:rgba(248,244,236,.78);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(31,31,27,.06);
-}
-
-.top-progress-inner{
-  width:min(1100px, calc(100vw - 28px));
-  margin:0 auto;
-  padding:8px 0 7px;
-}
-
-.progress-track{
-  height:1px;
-  background:rgba(31,31,27,.10);
-  position:relative;
-  margin-bottom:8px;
-}
-
-.progress-fill{
-  position:absolute;
-  left:0;
-  top:0;
-  height:1px;
-  width:0%;
-  background:var(--gold);
-  transition:width .12s linear;
-}
-
-.progress-tabs{
-  display:grid;
-  grid-template-columns:repeat(7, minmax(0, 1fr));
-  align-items:center;
-}
-
-.progress-tab{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-width:0;
-  text-align:center;
-  text-decoration:none;
-  font-family:'Merriweather', Georgia, serif;
-  font-size:.68rem;
-  letter-spacing:.02em;
-  color:rgba(31,31,27,.44);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  padding:3px 10px;
-  line-height:1.2;
-  transition:color .2s ease;
-  position:relative;
-}
-
-.progress-tab:not(:last-child)::after{
-  content:"";
-  position:absolute;
-  right:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:1px;
-  height:11px;
-  background:rgba(31,31,27,.10);
-}
-
-.progress-tab:hover{
-  color:rgba(31,31,27,.72);
-}
-
-.progress-tab.active{
-  color:var(--gold);
-}
-
-.hero{
-  position:relative;
-  min-height:95vh;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  overflow:hidden;
-  padding:calc(var(--nav-h) + 40px) 24px 72px;
-  background-image:
-    linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.18) 42%, rgba(0,0,0,.58) 100%),
-    url('pic1.png');
-  background-size:cover;
-  background-position:center center;
-  color:#fff;
-}
-
-.hero-inner{
-  width:min(980px, 100%);
-  text-align:center;
-}
-
-.eyebrow{
-  font-family:'Merriweather', Georgia, serif;
-  font-size:.8rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  opacity:.9;
-  margin-bottom:20px;
-}
-
-h1,h2,h3{
-  font-family:'Merriweather', Georgia, serif;
-  color:var(--ink);
-  margin:0;
-  line-height:1.1;
-  letter-spacing:-.02em;
-}
-
-.hero h1{
-  color:#fff;
-  font-size:clamp(3rem, 7vw, 6.4rem);
-  max-width:10ch;
-  margin:0 auto;
-  text-shadow:0 6px 24px rgba(0,0,0,.25);
-}
-
-.dek{
-  max-width:760px;
-  margin:24px auto 0;
-  text-align:center;
-  font-style:italic;
-  color:rgba(255,255,255,.92);
-  font-size:clamp(1.05rem, 2vw, 1.35rem);
-  line-height:1.65;
-}
-
-.byline{
-  margin-top:28px;
-  font-size:1rem;
-  color:rgba(255,255,255,.86);
-  font-family:Georgia, "Times New Roman", serif;
-}
-
-.meta{
-  margin-top:8px;
-  font-size:.98rem;
-  color:rgba(255,255,255,.76);
-}
-
-main{
-  padding:42px 0 100px;
-}
-
-.prose{
-  width:min(var(--body-w), calc(100vw - 36px));
-  margin:0 auto;
-}
-
-.prose p{
-  font-size:1.22rem;
-  margin:1.35rem 0;
-}
-
-.lead p:first-child::first-letter{
-  float:left;
-  font-family:'Merriweather', Georgia, serif;
-  font-size:4.8rem;
-  line-height:.86;
-  padding-right:10px;
-  margin-top:7px;
-  color:var(--gold);
-  font-weight:700;
-}
-
-.section{
-  position:relative;
-  padding:88px 0 0;
-  scroll-margin-top:96px;
-}
-
-.section-header{
-  width:min(var(--body-w), calc(100vw - 36px));
-  margin:0 auto 34px;
-}
-
-.section-number{
-  font-family:'Merriweather', Georgia, serif;
-  font-size:clamp(4rem, 11vw, 8rem);
-  line-height:.88;
-  color:rgba(31,31,27,.10);
-  margin-bottom:8px;
-}
-
-.section-title{
-  font-size:clamp(2rem, 4vw, 3.1rem);
-  max-width:16ch;
-}
-
-.section-rule{
-  width:76px;
-  height:1px;
-  background:var(--gold);
-  margin-top:20px;
-}
-
-.full-bleed{
-  width:min(var(--full-w), calc(100vw - 20px));
-  margin:56px auto;
-}
-
-.data-band{
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-  padding:22px 0;
-}
-
-.data-grid{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0, 1fr));
-  gap:20px;
-  width:min(var(--full-w), calc(100vw - 40px));
-  margin:0 auto;
-}
-
-.data-point{
-  min-height:120px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-
-.data-point strong{
-  font-family:'Merriweather', Georgia, serif;
-  font-size:clamp(2.4rem, 5vw, 4.6rem);
-  line-height:.95;
-  color:var(--gold);
-  font-weight:700;
-}
-
-.data-point span{
-  margin-top:10px;
-  color:var(--text-soft);
-  font-size:.98rem;
-  line-height:1.55;
-  max-width:18ch;
-}
-
-.stat-inline{
-  display:inline-block;
-  font-family:'Merriweather', Georgia, serif;
-  color:var(--gold);
-  font-size:1.48em;
-  line-height:.95;
-  vertical-align:-.05em;
-  padding:0 .05em;
-  font-weight:700;
-}
-
-.pullquote{
-  width:min(1040px, calc(100vw - 40px));
-  margin:72px auto;
-  text-align:center;
-  padding:0 10px;
-}
-
-.pullquote blockquote{
-  margin:0;
-  font-family:'Merriweather', Georgia, serif;
-  font-size:clamp(1.9rem, 4vw, 3.5rem);
-  line-height:1.18;
-  font-style:italic;
-  letter-spacing:-.02em;
-  color:var(--ink);
-}
-
-.pullquote cite{
-  display:block;
-  margin-top:18px;
-  font-size:.84rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--text-soft);
-  font-style:normal;
-}
-
-figure{
-  margin:0;
-}
-
-.placeholder{
-  position:relative;
-  min-height:58vh;
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-  background:
-    linear-gradient(135deg, rgba(184,138,59,.09), rgba(31,31,27,.03)),
-    repeating-linear-gradient(
-      90deg,
-      rgba(31,31,27,.035) 0,
-      rgba(31,31,27,.035) 1px,
-      transparent 1px,
-      transparent 78px
-    );
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.placeholder::before{
-  content:attr(data-label);
-  font-family:'Merriweather', Georgia, serif;
-  font-size:clamp(1.5rem, 3vw, 2.7rem);
-  color:rgba(31,31,27,.62);
-  text-align:center;
-  max-width:16ch;
-  padding:0 24px;
-  line-height:1.18;
-}
-
-.placeholder::after{
-  content:"";
-  position:absolute;
-  inset:12% 10%;
-  border:1px solid rgba(31,31,27,.08);
-}
-
-.video-wrap{
-  width:min(var(--body-w), calc(100vw - 36px));
-  margin:34px auto 46px;
-}
-
-.video-frame{
-  position:relative;
-  width:100%;
-  aspect-ratio:16 / 9;
-  background:#000;
-  overflow:hidden;
-}
-
-.video-frame iframe{
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-
-.video-caption{
-  width:min(var(--body-w), calc(100vw - 36px));
-  margin:10px auto 0;
-  color:var(--text-soft);
-  font-size:.95rem;
-  line-height:1.5;
-  text-align:center;
-  font-style:italic;
-}
-
-figcaption{
-  width:min(var(--body-w), calc(100vw - 36px));
-  margin:12px auto 0;
-  color:var(--text-soft);
-  font-size:.95rem;
-  line-height:1.5;
-  font-style:italic;
-}
-
-.sources-inline{
-  color:var(--text-soft);
-  font-size:.95rem;
-  font-style:italic;
-}
-
-.small-break{
-  width:min(var(--body-w), calc(100vw - 36px));
-  height:1px;
-  margin:72px auto 0;
-  background:linear-gradient(90deg, transparent, rgba(31,31,27,.2), transparent);
-}
-
-footer{
-  width:min(900px, calc(100vw - 36px));
-  margin:0 auto;
-  padding:36px 0 0;
-  color:var(--text-soft);
-  text-align:center;
-  font-size:1rem;
-  line-height:1.7;
-}
-
-.reveal{
-  opacity:0;
-  transform:translateY(18px);
-  transition:opacity .8s ease, transform .8s ease;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:none;
-}
-
-@media (max-width:980px){
-  .data-grid{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-  }
-
-  .placeholder{
-    min-height:44vh;
-  }
-}
-
-@media (max-width:720px){
-  :root{
-    --nav-h:44px;
-  }
-
-  .top-progress-inner{
-    width:min(100vw - 14px, 100%);
-    padding:7px 0 6px;
-  }
-
-  .progress-tab{
-    font-size:.56rem;
-    padding:2px 6px;
-  }
-
-  .hero{
-    min-height:82vh;
-    padding-bottom:54px;
-  }
-
-  .prose p{
-    font-size:1.08rem;
-  }
-
-  .data-grid{
-    grid-template-columns:1fr;
-    gap:10px;
-  }
-
-  .pullquote{
-    margin:56px auto;
-  }
-
-  .pullquote blockquote{
-    font-size:clamp(1.55rem, 7vw, 2.4rem);
-  }
-
-  .lead p:first-child::first-letter{
-    font-size:4rem;
-  }
-}
-.section-number,
-.section-title,
-.section-kicker,
-.pullquote,
-.bar,
-.compare-fill{
-  will-change: transform, opacity;
-}
-
-.section-header .section-number{
-  opacity:0;
-  transform:translateY(26px);
-  transition:opacity 1.1s ease, transform 1.1s ease;
-}
-
-.section-header.visible .section-number{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.section-header .section-title,
-.section-header .section-kicker{
-  opacity:0;
-  transform:translateY(18px);
-  transition:opacity .8s ease, transform .8s ease;
-}
-
-.section-header.visible .section-title,
-.section-header.visible .section-kicker{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.pullquote{
-  transform:scale(.985);
-  transform-origin:center center;
-  transition:opacity .9s ease, transform .9s ease;
-}
-
-.pullquote.visible{
-  transform:scale(1);
-}
-
-.bar{
-  transform-origin:center bottom;
-  transform:scaleY(0);
-  transition:transform 1s cubic-bezier(.22,.9,.35,1);
-}
-
-.bar-chart.visible .bar{
-  transform:scaleY(1);
-}
-
-.compare-fill{
-  transform-origin:left center;
-  transform:scaleX(0);
-  transition:transform 1s cubic-bezier(.22,.9,.35,1);
-}
-
-.compare-chart.visible .compare-fill{
-  transform:scaleX(1);
-}
-
-
+    :root {
+      --bg: #f4efe6;
+      --paper: #fbf8f2;
+      --ink: #171513;
+      --muted: #5f5850;
+      --line: rgba(23, 21, 19, 0.14);
+      --accent: #8a5a2b;
+      --accent-soft: rgba(138, 90, 43, 0.12);
+      --max: 700px;
+      --full: 1200px;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(138, 90, 43, 0.08), transparent 32%),
+        linear-gradient(180deg, #f7f2e9 0%, #f4efe6 24%, #f6f1e8 100%);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+      background: rgba(138, 90, 43, 0.2);
+    }
+
+    .site-header {
+      padding: 10vh 24px 6vh;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -12% auto;
+      width: 46vw;
+      height: 46vw;
+      max-width: 520px;
+      max-height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 90, 43, 0.08), transparent 68%);
+      pointer-events: none;
+    }
+
+    .header-inner,
+    .prose,
+    .footer-inner {
+      width: min(var(--max), calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      max-width: 10ch;
+    }
+
+    .dek {
+      margin-top: 28px;
+      max-width: 42rem;
+      font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .byline {
+      margin-top: 30px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    main {
+      padding: 0 0 8rem;
+    }
+
+    .lead {
+      padding-top: 5rem;
+    }
+
+    .prose p {
+      font-size: 1.08rem;
+      margin: 1.35rem 0;
+    }
+
+    .prose p:first-child {
+      margin-top: 0;
+    }
+
+    .dropcap:first-letter {
+      float: left;
+      font-family: var(--serif);
+      font-size: 4.9rem;
+      line-height: 0.82;
+      padding-right: 10px;
+      margin-top: 8px;
+      color: var(--accent);
+    }
+
+    .section {
+      padding: 7rem 0 0;
+    }
+
+    .section-header {
+      width: min(var(--max), calc(100vw - 40px));
+      margin: 0 auto 2.8rem;
+      position: relative;
+    }
+
+    .section-number {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 12vw, 9rem);
+      color: rgba(23, 21, 19, 0.09);
+      line-height: 0.9;
+      margin-bottom: 0.2rem;
+      user-select: none;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      max-width: 16ch;
+    }
+
+    .section-rule {
+      width: 70px;
+      height: 1px;
+      background: var(--accent);
+      margin: 22px 0 0;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .pullquote,
+    .big-quote {
+      width: min(var(--full), calc(100vw - 40px));
+      margin: 5rem auto;
+      padding: 0 20px;
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    .pullquote blockquote,
+    .big-quote blockquote {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .pullquote cite,
+    .big-quote cite {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .full-bleed {
+      width: min(var(--full), calc(100vw - 20px));
+      margin: 4.5rem auto;
+    }
+
+    .data-band {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 1.5rem 0;
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      width: min(var(--full), calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .data-point {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .data-point strong {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.95;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .data-point span {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 18ch;
+    }
+
+    .stat-inline {
+      display: inline-block;
+      font-family: var(--serif);
+      font-size: 1.55em;
+      line-height: 0.95;
+      color: var(--accent);
+      padding: 0 0.08em;
+      vertical-align: -0.04em;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .media-block {
+      margin: 4.5rem auto;
+    }
+
+    .placeholder {
+      position: relative;
+      min-height: 58vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(138, 90, 43, 0.1), rgba(23, 21, 19, 0.02)),
+        repeating-linear-gradient(
+          90deg,
+          rgba(23, 21, 19, 0.04) 0,
+          rgba(23, 21, 19, 0.04) 1px,
+          transparent 1px,
+          transparent 80px
+        );
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .placeholder::before {
+      content: attr(data-label);
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.8rem);
+      color: rgba(23, 21, 19, 0.6);
+      letter-spacing: -0.02em;
+      text-align: center;
+      max-width: 16ch;
+      padding: 0 24px;
+    }
+
+    .placeholder::after {
+      content: "";
+      position: absolute;
+      inset: 12% 10%;
+      border: 1px solid rgba(23, 21, 19, 0.08);
+      pointer-events: none;
+    }
+
+    figcaption {
+      width: min(var(--max), calc(100vw - 40px));
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .sources-inline {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 1rem;
+    }
+
+    .small-break {
+      width: min(var(--max), calc(100vw - 40px));
+      margin: 4rem auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(23, 21, 19, 0.18), transparent);
+    }
+
+    .outro-title {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      margin-top: 7rem;
+      padding: 3rem 0 4rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: grid;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .data-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .placeholder {
+        min-height: 42vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        padding-top: 7rem;
+      }
+
+      .prose p {
+        font-size: 1rem;
+      }
+
+      .data-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .data-point {
+        min-height: auto;
+        padding: 0.4rem 0;
+      }
+
+      .pullquote,
+      .big-quote {
+        margin: 3.4rem auto;
+      }
+
+      .pullquote blockquote,
+      .big-quote blockquote {
+        font-size: clamp(1.5rem, 8vw, 2.4rem);
+      }
+
+      .dropcap:first-letter {
+        font-size: 4rem;
+        margin-top: 6px;
+      }
+    }
   </style>
 </head>
 <body>
- <nav class="top-progress" aria-label="Reading progress">
-  <div class="top-progress-inner">
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-
-    <div class="progress-tabs">
-      <a href="#intro" class="progress-tab active" data-target="intro">Intro</a>
-      <a href="#part-1" class="progress-tab" data-target="part-1">Moment</a>
-      <a href="#part-2" class="progress-tab" data-target="part-2">Environment</a>
-      <a href="#part-3" class="progress-tab" data-target="part-3">Thinking</a>
-      <a href="#part-4" class="progress-tab" data-target="part-4">Use or Not</a>
-      <a href="#part-5" class="progress-tab" data-target="part-5">Jobs</a>
-      <a href="#outro" class="progress-tab" data-target="outro">Outro</a>
-    </div>
-  </div>
-</nav>
-
-
-
-
-  <header class="hero" id="intro">
-    <div class="hero-inner reveal visible">
+  <header class="site-header">
+    <div class="header-inner reveal">
       <div class="eyebrow">Deep Feature</div>
       <h1>The First AI-Native Generation</h1>
-      <p class="dek">The last to grow up without AI, and the first to graduate with it shaping how they study, think, and work.</p>
-      <div class="byline">By Hu Xinyue</div>
-      <div class="meta">April 22, 2026</div>
+      <p class="dek">
+        The first generation of college students to come of age with AI did not simply adopt a tool.
+        They inherited an environment: one shaped by speed, uncertainty, acceleration, doubt, and new forms of ambition.
+      </p>
+      <div class="byline">
+        <span>By Author</span>
+        <span>Longform Special Report</span>
+        <span>2026</span>
+      </div>
     </div>
   </header>
 
   <main>
-   
-
-    <section class="prose lead reveal visible">
-      <p>“See, this advertisement is made of AI, isn’t that interesting?” said Professor Randy Harrison during his Marketing and Marketing Communication class at Emerson College in the U.S., showing an AI-generated ad of a woman promoting a music app.</p>
+    <section class="lead prose reveal">
+      <p class="dropcap">“See, this advertisement is made of AI, isn’t that interesting?” said Professor Randy Harrison during his Marketing and Marketing Communication class at Emerson College in the U.S., showing an AI-generated ad of a woman promoting a music app.</p>
       <p>The students’ reactions were quiet. Instead of cheering or looking surprised, they frowned. Some giggled in disbelief.</p>
       <p>“I don’t think I have learned anything useful in this class,” said Lena, a freshman majoring in Marketing Communication at Emerson. “It’s a whole course on talking to AI.”</p>
       <p>“I don’t use AI because I think it’s depriving my creativity,” said Norah Lesspeern, a Journalism student minoring in Marketing.</p>
@@ -607,7 +425,7 @@ footer{
       <p>It’s no longer a surprise that AI has become part of university students’ lives right now.</p>
     </section>
 
-    <section class="full-bleed data-band reveal">
+    <section class="full-bleed data-band reveal" aria-label="AI usage statistics">
       <div class="data-grid">
         <div class="data-point">
           <strong>66%</strong>
@@ -631,24 +449,10 @@ footer{
     <section class="prose reveal">
       <p>According to the latest 2025 data, <span class="stat-inline">66%</span> of people use AI regularly. Among all age groups, younger demographics have embraced AI tools with remarkable enthusiasm: <span class="stat-inline">76%</span> of adults aged 18–29 have used AI tools, compared to just <span class="stat-inline">6%</span> of those 65 and older. On university campuses, over <span class="stat-inline">80%</span> of students have used AI in their everyday lives, according to the Chegg Global Student Survey.</p>
       <p>Globally, the numbers vary by country. The United States has the largest absolute user base: <span class="stat-inline">179 million</span> active users. China presents a unique case, with <span class="stat-inline">250 million</span> users on domestic platforms like Quark AI and DeepSeek, operating in a separate ecosystem due to ChatGPT being blocked.</p>
-    </section>
-<div class="video-wrap reveal">
-  <div class="video-frame">
-    <iframe
-      src="https://www.youtube.com/embed/5vm-WoBQc1k"
-      title="The First AI-Native Generation Video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
- 
-</div>
-
-     <section class="prose reveal">
       <p>This is the story of the first AI-native generation in college: students who came of age as artificial intelligence shifted from a tool into an environment. Around them, the conversation is loud and unsettled: the concern of controlling, the fear of replacing, and the excitement of adapting. The impact of AI brings an ever-present uncertainty. How do these first AI-native young people respond? How do they cope? Through their voices, one generation captures an age.</p>
     </section>
 
-    <section class="section" id="part-1">
+    <section class="section">
       <div class="section-header reveal">
         <div class="section-number">01</div>
         <h2 class="section-title">Part 1: The Moment That Changes Everything</h2>
@@ -691,14 +495,14 @@ footer{
       </div>
     </section>
 
-    <section class="section" id="part-2">
+    <section class="section">
       <div class="section-header reveal">
         <div class="section-number">02</div>
         <h2 class="section-title">Part 2: Re-shaped Life: From Tools to Environment</h2>
         <div class="section-rule"></div>
       </div>
 
-      <div class="pullquote reveal">
+      <div class="big-quote reveal">
         <blockquote>“I feel like I’m being lifted by AI. It has become my external brain.”</blockquote>
         <cite>Remi Liang</cite>
       </div>
@@ -713,7 +517,7 @@ footer{
         <p>She used Midjourney to generate a dozen images. The result was impressive. “That was my real wow moment.” For just a few dollars, buying access via Taobao, she replaced hiring actors, renting equipment, and post-production. Both cost and time were compressed to the extreme.</p>
       </div>
 
-      <figure class="full-bleed reveal">
+      <figure class="media-block full-bleed reveal">
         <div class="placeholder" data-label="Image Placeholder / media/image1.jpeg"></div>
         <figcaption>Chart created by Remi through Midjourney. Placeholder replacing original visual asset.</figcaption>
       </figure>
@@ -754,7 +558,7 @@ footer{
       </div>
     </section>
 
-    <section class="section" id="part-3">
+    <section class="section">
       <div class="section-header reveal">
         <div class="section-number">03</div>
         <h2 class="section-title">Part 3: Human Intelligence or Artificial Intelligence?</h2>
@@ -776,7 +580,7 @@ footer{
         <p>The results were striking. Students who wrote entirely on their own showed the strongest brain activity. Those who used Google search fell in the middle. And the ChatGPT-dependent group showed the weakest brain activity, the more they relied on AI, the less their brains seemed to work.</p>
       </div>
 
-      <figure class="full-bleed reveal">
+      <figure class="media-block full-bleed reveal">
         <div class="placeholder" data-label="Image Placeholder / media/image2.jpeg"></div>
         <figcaption>Illustrative placeholder for research-related chart or brain-activity visual mentioned in the article.</figcaption>
       </figure>
@@ -803,7 +607,7 @@ footer{
         <p>Programmers are being redefined. Building software no longer means writing code. Engineers are shifting from “coders” to “conductors”, evaluating AI output, providing direction, and ensuring the right problems get solved. Anthropic calls this new role the “AI conductor.” Those who only code are being phased out, while those with architectural and strategic skills are becoming more competitive.</p>
       </div>
 
-      <div class="pullquote reveal">
+      <div class="big-quote reveal">
         <blockquote>“I know how to build things. But I don’t know what to build anymore.”</blockquote>
         <cite>Vishal Ginni</cite>
       </div>
@@ -821,7 +625,7 @@ footer{
       </div>
     </section>
 
-    <section class="section" id="part-4">
+    <section class="section">
       <div class="section-header reveal">
         <div class="section-number">04</div>
         <h2 class="section-title">Part 4: To Use or Not to Use, that's a question</h2>
@@ -868,7 +672,7 @@ footer{
         <p>Randy is a professor of marketing communication at Emerson College and one of the first educators to bring AI into the classroom. The day after ChatGPT was released in 2022, he had his students try using it for information retrieval tasks.</p>
       </div>
 
-      <figure class="full-bleed reveal">
+      <figure class="media-block full-bleed reveal">
         <div class="placeholder" data-label="Image Placeholder / media/image3.jpeg"></div>
         <figcaption>Placeholder for classroom or teaching-related image referenced in the feature.</figcaption>
       </figure>
@@ -891,7 +695,7 @@ footer{
       </div>
     </section>
 
-    <section class="section" id="part-5">
+    <section class="section">
       <div class="section-header reveal">
         <div class="section-number">05</div>
         <h2 class="section-title">Part 5: Future Jobs?</h2>
@@ -937,16 +741,16 @@ footer{
         <p>He admitted the process was painful. “Training AI is painful. But it's a necessary hurdle. Learning to manage AI is the direction we need to move in. You need a lot of exposure. Train AI in different environments. Use it over and over again.”</p>
       </div>
 
-      <figure class="full-bleed reveal">
+      <figure class="media-block full-bleed reveal">
         <div class="placeholder" data-label="Image Placeholder / media/image4.png"></div>
         <figcaption>Placeholder for labor-market, startup, or future-of-work visual referenced in the article.</figcaption>
       </figure>
     </section>
 
-    <section class="section" id="outro">
+    <section class="section">
       <div class="section-header reveal">
         <div class="section-number">06</div>
-        <h2 class="section-title">Outro</h2>
+        <h2 class="section-title outro-title">Outro</h2>
         <div class="section-rule"></div>
       </div>
 
@@ -958,7 +762,7 @@ footer{
         <p>In just four short years, the AI era had stretched to a length that already felt like a century.</p>
       </div>
 
-      <figure class="full-bleed reveal">
+      <figure class="media-block full-bleed reveal">
         <div class="placeholder" data-label="Image Placeholder / media/image5.png"></div>
         <figcaption>Placeholder for concluding visual. Additional unavailable assets referenced in the project may include media/image6.png through media/image9.png.</figcaption>
       </figure>
@@ -966,108 +770,24 @@ footer{
 
     <div class="small-break"></div>
 
-    <footer class="reveal">
-      <p><strong>Author:</strong> Hu Xinyue</p>
-      <p><strong>Data Sources Mentioned:</strong> 2025 AI usage data, Chegg Global Student Survey, Midjourney statistics, National University AI statistics, and figures cited within article text.</p>
+    <footer>
+      <div class="footer-inner reveal">
+        <div><strong style="color: var(--ink); font-family: var(--serif); font-weight: 700;">Author</strong>: Special report by author.</div>
+        <div><strong style="color: var(--ink); font-family: var(--serif); font-weight: 700;">Design</strong>: Longform scrolling layout inspired by newspaper-style feature storytelling.</div>
+        <div><strong style="color: var(--ink); font-family: var(--serif); font-weight: 700;">Data Sources Mentioned</strong>: 2025 AI usage data, Chegg Global Student Survey, Midjourney statistics, National University AI statistics, Master of Code references, reported figures cited within article text.</div>
+      </div>
     </footer>
   </main>
 
   <script>
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.12 });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+      });
+    }, { threshold: 0.12 });
 
-  document.querySelectorAll(".reveal").forEach((el) => {
-    revealObserver.observe(el);
-  });
-
-  const sections = [
-    { id: "intro", label: "Intro" },
-    { id: "part-1", label: "Moment" },
-    { id: "part-2", label: "Environment" },
-    { id: "part-3", label: "Thinking" },
-    { id: "part-4", label: "Use or Not" },
-    { id: "part-5", label: "Jobs" },
-    { id: "outro", label: "Outro" }
-  ];
-
-  const sectionEls = sections
-    .map((item) => document.getElementById(item.id))
-    .filter(Boolean);
-
-  const tabs = Array.from(document.querySelectorAll(".progress-tab"));
-  const fill = document.getElementById("progressFill");
-
-  function setActiveSection(index) {
-    tabs.forEach((tab, i) => {
-      tab.classList.toggle("active", i === index);
-    });
-
-    const percent = sections.length > 1 ? (index / (sections.length - 1)) * 100 : 0;
-    if (fill) fill.style.width = percent + "%";
-  }
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-    if (visible.length) {
-      const id = visible[0].target.id;
-      const idx = sectionEls.findIndex((section) => section.id === id);
-      if (idx >= 0) setActiveSection(idx);
-    }
-  }, {
-    rootMargin: "-35% 0px -45% 0px",
-    threshold: [0.15, 0.35, 0.6]
-  });
-
-  sectionEls.forEach((section) => sectionObserver.observe(section));
-
-  function updateProgressByScroll() {
-    if (!fill || !sectionEls.length) return;
-
-    let activeIndex = sectionEls.findIndex((section) => {
-      const rect = section.getBoundingClientRect();
-      return rect.top <= window.innerHeight * 0.35 && rect.bottom > window.innerHeight * 0.35;
-    });
-
-    if (activeIndex < 0) activeIndex = 0;
-
-    const activeSection = sectionEls[activeIndex];
-    const nextSection = sectionEls[activeIndex + 1];
-
-    tabs.forEach((tab, i) => {
-      tab.classList.toggle("active", i === activeIndex);
-    });
-
-    if (!nextSection) {
-      fill.style.width = "100%";
-      return;
-    }
-
-    const base = (activeIndex / (sections.length - 1)) * 100;
-    const next = ((activeIndex + 1) / (sections.length - 1)) * 100;
-
-    const start = activeSection.offsetTop - window.innerHeight * 0.35;
-    const end = nextSection.offsetTop - window.innerHeight * 0.45;
-    const local = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start || 1)));
-
-    fill.style.width = (base + (next - base) * local) + "%";
-  }
-
-  window.addEventListener("scroll", updateProgressByScroll, { passive: true });
-  window.addEventListener("resize", updateProgressByScroll);
-
-  setActiveSection(0);
-  updateProgressByScroll();
-</script>
-
-
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
 ```
