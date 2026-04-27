@@ -125,27 +125,85 @@ img{
 .progress-tab.active{
   color:var(--gold);
 }
-
-.hero{
+.hero-immersive{
   position:relative;
-  min-height:95vh;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  overflow:hidden;
-  padding:calc(var(--nav-h) + 40px) 24px 72px;
-  background-image:
-    linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.18) 42%, rgba(0,0,0,.58) 100%),
-    url('pic1.png');
+  height:145vh;
+  min-height:900px;
+  background-image:url('pic1.png');
   background-size:cover;
   background-position:center center;
-  color:#fff;
+  background-repeat:no-repeat;
 }
 
-.hero-inner{
+
+
+.hero-overlay{
+  position:sticky;
+  top:0;
+  height:100vh;
+  background:rgba(0,0,0,.08);
+  transition:background .12s linear;
+}
+
+.hero-title-overlay{
+  position:sticky;
+  top:0;
+  height:100vh;
+  margin-top:-100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:80px 24px 72px;
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .18s linear, transform .18s linear;
+  pointer-events:none;
+}
+
+.hero-title-overlay .hero-inner{
   width:min(980px, 100%);
   text-align:center;
 }
+
+.hero-title-overlay h1{
+  color:#fff;
+  font-size:clamp(2.2rem, 5vw, 4.2rem);
+  max-width:11ch;
+  margin:0 auto;
+  text-shadow:0 8px 30px rgba(0,0,0,.28);
+}
+
+
+.hero-title-overlay .dek{
+  max-width:760px;
+  margin:24px auto 0;
+  text-align:center;
+  font-style:italic;
+  color:rgba(255,255,255,.92);
+  font-size:clamp(1.05rem, 2vw, 1.35rem);
+  line-height:1.65;
+}
+
+.hero-title-overlay .byline{
+  margin-top:28px;
+  font-size:1rem;
+  color:rgba(255,255,255,.88);
+}
+
+.hero-title-overlay .meta{
+  margin-top:8px;
+  font-size:.98rem;
+  color:rgba(255,255,255,.74);
+}
+
+@media (max-width:720px){
+  .hero-immersive{
+    height:132vh;
+    min-height:760px;
+  }
+}
+
+
 
 .eyebrow{
   font-family:'Merriweather', Georgia, serif;
@@ -171,30 +229,6 @@ h1,h2,h3{
   margin:0 auto;
   text-shadow:0 6px 24px rgba(0,0,0,.25);
 }
-
-.dek{
-  max-width:760px;
-  margin:24px auto 0;
-  text-align:center;
-  font-style:italic;
-  color:rgba(255,255,255,.92);
-  font-size:clamp(1.05rem, 2vw, 1.35rem);
-  line-height:1.65;
-}
-
-.byline{
-  margin-top:28px;
-  font-size:1rem;
-  color:rgba(255,255,255,.86);
-  font-family:Georgia, "Times New Roman", serif;
-}
-
-.meta{
-  margin-top:8px;
-  font-size:.98rem;
-  color:rgba(255,255,255,.76);
-}
-
 main{
   padding:42px 0 100px;
 }
@@ -372,10 +406,85 @@ figure{
   inset:12% 10%;
   border:1px solid rgba(31,31,27,.08);
 }
-
 .video-wrap{
   width:min(var(--body-w), calc(100vw - 36px));
   margin:34px auto 46px;
+}
+
+.video-card{
+  position:relative;
+  background:#111;
+  overflow:hidden;
+}
+
+.video-poster{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  padding:0;
+  border:0;
+  background:#111;
+  cursor:pointer;
+  display:block;
+}
+
+.video-poster img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:brightness(.72);
+  transition:transform .45s ease, filter .45s ease;
+}
+
+.video-poster:hover img{
+  transform:scale(1.02);
+  filter:brightness(.62);
+}
+
+.video-poster::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.38));
+}
+
+.video-play{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:rgba(248,244,236,.92);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.video-play-triangle{
+  width:0;
+  height:0;
+  border-left:18px solid var(--gold);
+  border-top:11px solid transparent;
+  border-bottom:11px solid transparent;
+  margin-left:4px;
+}
+
+.video-overlay-text{
+  position:absolute;
+  left:24px;
+  bottom:20px;
+  right:24px;
+  z-index:2;
+  color:#fff;
+  font-family:'Merriweather', Georgia, serif;
+  font-size:clamp(1rem, 2vw, 1.35rem);
+  line-height:1.3;
+  text-align:left;
 }
 
 .video-frame{
@@ -383,7 +492,6 @@ figure{
   width:100%;
   aspect-ratio:16 / 9;
   background:#000;
-  overflow:hidden;
 }
 
 .video-frame iframe{
@@ -391,16 +499,6 @@ figure{
   height:100%;
   border:0;
   display:block;
-}
-
-.video-caption{
-  width:min(var(--body-w), calc(100vw - 36px));
-  margin:10px auto 0;
-  color:var(--text-soft);
-  font-size:.95rem;
-  line-height:1.5;
-  text-align:center;
-  font-style:italic;
 }
 
 figcaption{
@@ -562,134 +660,6 @@ footer{
 
 
 
-
-
-#图表
-section.age-viz{
-  width:min(var(--body-w), calc(100vw - 36px)) !important;
-  max-width:var(--body-w) !important;
-  margin:56px auto !important;
-  padding:0 !important;
-}
-
-.age-viz-header{
-  width:100% !important;
-  max-width:none !important;
-  margin:0 0 24px !important;
-}
-
-.age-chart{
-  width:100% !important;
-  max-width:none !important;
-  margin:0 !important;
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-}
-
-.age-viz-source{
-  width:100% !important;
-  max-width:none !important;
-  margin:14px 0 0 !important;
-  color:var(--text-soft);
-  font-size:0.1rem;
-  line-height:1.45;
-  font-style:italic;
-}
-
-.age-row{
-  display:grid;
-  grid-template-columns:160px 1fr 64px;
-  gap:14px 18px;
-  padding:18px 0 16px;
-  border-bottom:1px solid rgba(31,31,27,.08);
-  align-items:center;
-}
-
-.age-row:last-child{
-  border-bottom:none;
-}
-
-.age-label{
-  font-family:'Merriweather', Georgia, serif;
-  font-size:1rem;
-  color:var(--ink);
-}
-
-.age-bar-track{
-  position:relative;
-  width:100%;
-  height:14px;
-  background:rgba(31,31,27,.08);
-  overflow:hidden;
-}
-
-.age-bar{
-  height:100%;
-  background:linear-gradient(90deg, rgba(184,138,59,.95), rgba(184,138,59,.62));
-  transform-origin:left center;
-  transform:scaleX(0);
-  transition:transform 1s cubic-bezier(.22,.9,.35,1);
-}
-
-.age-value{
-  font-family:'Merriweather', Georgia, serif;
-  font-size:1.05rem;
-  color:var(--gold);
-  text-align:right;
-}
-
-.age-note{
-  grid-column:2 / 4;
-  color:var(--text-soft);
-  font-size:.95rem;
-  line-height:1.55;
-  margin-top:-4px;
-}
-
-.age-viz.visible .age-bar{
-  transform:scaleX(1);
-}
-
-@media (max-width:720px){
-  section.age-viz{
-    width:min(var(--body-w), calc(100vw - 36px)) !important;
-  }
-
-  .age-row{
-    grid-template-columns:1fr 56px;
-    gap:10px 12px;
-    padding:16px 0 14px;
-  }
-
-  .age-label{
-    grid-column:1 / 2;
-    font-size:.98rem;
-  }
-
-  .age-bar-track{
-    grid-column:1 / 2;
-  }
-
-  .age-value{
-    grid-column:2 / 3;
-    grid-row:1 / 3;
-    align-self:center;
-    font-size:1rem;
-  }
-
-  .age-note{
-    grid-column:1 / 3;
-    font-size:.9rem;
-    margin-top:2px;
-  }
-}
-
-
-
-
-
-
-
 .article-image{
   width:min(var(--body-w), calc(100vw - 36px));
   margin:40px auto;
@@ -708,6 +678,227 @@ section.age-viz{
   line-height:1.5;
   font-style:italic;
 }
+
+.remi-scrolly{
+  width:min(1100px, calc(100vw - 24px));
+  margin:48px auto 72px;
+  overflow:visible;
+}
+
+.remi-scrolly-inner{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 56px minmax(320px, 420px);
+  gap:24px;
+  align-items:start;
+  overflow:visible;
+}
+
+.remi-steps{
+  padding-top:6px;
+}
+
+.remi-step{
+  min-height:82vh;
+  display:flex;
+  align-items:center;
+  opacity:.28;
+  transition:opacity .35s ease;
+}
+
+.remi-step.active{
+  opacity:1;
+}
+
+.remi-step p{
+  margin:0;
+  font-size:1.08rem;
+  line-height:1.85;
+  color:var(--text-main);
+}
+
+.remi-step strong{
+  color:var(--ink);
+  font-weight:700;
+}
+
+.remi-linkline{
+  position:sticky;
+  top:46vh;
+  align-self:start;
+  height:18px;
+  width:100%;
+  display:flex;
+  align-items:center;
+}
+
+.remi-linkline::before{
+  content:"";
+  flex:1;
+  height:1px;
+  background:rgba(31,31,27,.14);
+}
+
+.remi-linkline::after{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  border:1px solid rgba(31,31,27,.12);
+  margin-left:-1px;
+  box-shadow:0 0 0 4px rgba(184,138,59,.08);
+}
+
+
+.remi-chat-panel{
+  position:sticky;
+  top:96px;
+  align-self:start;
+}
+
+
+
+.chat-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.chat-title{
+  font-family:'Merriweather', Georgia, serif;
+  font-size:.95rem;
+  color:var(--ink);
+}
+
+.chat-body{
+  padding-top:16px;
+  min-height:360px;
+}
+
+.chat-message{
+  max-width:88%;
+  padding:12px 14px;
+  margin-bottom:14px;
+  line-height:1.6;
+  font-size:.98rem;
+}
+
+.chat-shell{
+  background:linear-gradient(180deg, rgba(253,251,247,.98) 0%, rgba(248,243,234,.98) 100%);
+  border:1px solid rgba(31,31,27,.10);
+  box-shadow:0 10px 30px rgba(31,31,27,.06);
+  padding:16px;
+}
+
+.chat-topbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(31,31,27,.08);
+}
+
+.chat-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:
+    14px 0 0 rgba(31,31,27,.12),
+    28px 0 0 rgba(31,31,27,.12);
+}
+
+.chat-title{
+  font-family:'Merriweather', Georgia, serif;
+  font-size:.95rem;
+  color:var(--ink);
+  margin-left:32px;
+}
+
+.chat-body{
+  padding-top:16px;
+  min-height:360px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0));
+}
+
+.chat-message{
+  max-width:88%;
+  padding:12px 14px;
+  margin-bottom:14px;
+  line-height:1.6;
+  font-size:.98rem;
+}
+
+.chat-message.user{
+  margin-left:auto;
+  background:linear-gradient(180deg, rgba(184,138,59,.18), rgba(184,138,59,.12));
+  color:var(--ink);
+  border:1px solid rgba(184,138,59,.14);
+}
+
+.chat-message.ai{
+  background:linear-gradient(180deg, rgba(31,31,27,.07), rgba(31,31,27,.05));
+  color:var(--text-main);
+  white-space:pre-line;
+  border:1px solid rgba(31,31,27,.05);
+}
+
+.chat-message.typing{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  min-height:48px;
+}
+
+.chat-message.typing span{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:rgba(31,31,27,.35);
+  animation:chatPulse 1s infinite ease-in-out;
+}
+
+.chat-message.typing span:nth-child(2){
+  animation-delay:.14s;
+}
+
+.chat-message.typing span:nth-child(3){
+  animation-delay:.28s;
+}
+
+@keyframes chatPulse{
+  0%, 80%, 100%{ transform:scale(.72); opacity:.45; }
+  40%{ transform:scale(1); opacity:1; }
+}
+
+@media (max-width:900px){
+  .remi-scrolly-inner{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .remi-linkline{
+    display:none;
+  }
+
+  .remi-chat-panel{
+    position:relative;
+    top:auto;
+  }
+
+  .remi-step{
+    min-height:auto;
+    opacity:1;
+    margin-bottom:34px;
+  }
+
+  .chat-body{
+    min-height:280px;
+  }
+}
+
 
 
   </style>
@@ -733,16 +924,20 @@ section.age-viz{
 
 
 
+<section class="hero-immersive" id="intro">
+  <div class="hero-overlay" id="heroOverlay"></div>
 
-  <header class="hero" id="intro">
-    <div class="hero-inner reveal visible">
-      <div class="eyebrow">Deep Feature</div>
+  <div class="hero-title-overlay" id="heroTitle">
+    <div class="hero-inner">
       <h1>The First AI-Native Generation</h1>
       <p class="dek">The last to grow up without AI, and the first to graduate with it shaping how they study, think, and work.</p>
       <div class="byline">By Hu Xinyue</div>
-      <div class="meta">April 22, 2026</div>
+      <div class="meta">April 2026</div>
     </div>
-  </header>
+  </div>
+</section>
+
+
 
   <main>
    
@@ -760,59 +955,8 @@ section.age-viz{
     <section class="prose reveal">
       <p>According to the latest 2025 data, <span class="stat-inline">66%</span> of people use AI regularly. Among all age groups, younger demographics have embraced AI tools with remarkable enthusiasm: <span class="stat-inline">76%</span> of adults aged 18–29 have used AI tools, compared to just <span class="stat-inline">6%</span> of those 65 and older. On university campuses, over <span class="stat-inline">80%</span> of students have used AI in their everyday lives, according to the Chegg Global Student Survey.</p>
       <br>
-      <section class="age-viz reveal">
-  <div class="age-viz-header">
-    <h3 class="age-viz-title">AI Adoption by Age Group</h3>
-    <p class="age-viz-subtitle">
-      Younger users have integrated AI into everyday life far more deeply than older generations.
-    </p>
-  </div>
-
-  <div class="age-chart">
-    <div class="age-row">
-      <div class="age-label">18–29 Years</div>
-      <div class="age-bar-track">
-        <div class="age-bar" style="width: 76%;"></div>
-      </div>
-      <div class="age-value">76%</div>
-      <div class="age-note">Daily/Weekly: 40% · Learning, content creation, career development</div>
-    </div>
-
-    <div class="age-row">
-      <div class="age-label">30–44 Years</div>
-      <div class="age-bar-track">
-        <div class="age-bar" style="width: 65%;"></div>
-      </div>
-      <div class="age-value">65%</div>
-      <div class="age-note">Daily/Weekly: 35% · Work productivity, business tasks, research</div>
-    </div>
-
-    <div class="age-row">
-      <div class="age-label">45–64 Years</div>
-      <div class="age-bar-track">
-        <div class="age-bar" style="width: 51%;"></div>
-      </div>
-      <div class="age-value">51%</div>
-      <div class="age-note">Weekly: 28% · Information seeking, problem solving</div>
-    </div>
-
-    <div class="age-row">
-      <div class="age-label">65+ Years</div>
-      <div class="age-bar-track">
-        <div class="age-bar" style="width: 6%;"></div>
-      </div>
-
-
-      <div class="age-value">6%</div>
-      <div class="age-note">Occasional · Basic assistance, information queries</div>
-    </div>
-    
-  </div>
-
-  <p class="age-viz-source">
-    Data source: The Global Statistics, “Artificial Intelligence (AI) Usage Statistics.
-  </p>
-</section>
+      <div class="flourish-embed flourish-pictogram" data-src="visualisation/28712561"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28712561/thumbnail" width="100%" alt="pictogram visualization" /></noscript></div>
+<br>
       <p>Globally, the numbers vary by country. The United States has the largest absolute user base: <span class="stat-inline">179 million</span> active users. China presents a unique case, with <span class="stat-inline">250 million</span> users on domestic platforms like Quark AI and DeepSeek, operating in a separate ecosystem due to ChatGPT being blocked.</p>
       
       
@@ -827,15 +971,19 @@ section.age-viz{
     </section>
     <br>
 <div class="video-wrap reveal">
-  <div class="video-frame">
-    <iframe
-      src="https://www.youtube.com/embed/5vm-WoBQc1k"
-      title="The First AI-Native Generation Video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
+  <div class="video-card" id="videoCard">
+    <button class="video-poster" id="videoPoster" aria-label="Play video">
+      <img src="pic1.png" alt="Video cover for The First AI-Native Generation">
+      <span class="video-play">
+        <span class="video-play-triangle"></span>
+      </span>
+      <span class="video-overlay-text">How do university students think of AI?</span>
+    </button>
+
+    <div class="video-frame" id="videoFrame" hidden></div>
   </div>
- 
+</div>
+
 </div>
     <section class="section" id="part-1">
       <div class="section-header reveal">
@@ -862,8 +1010,17 @@ section.age-viz{
         <p>On November 30, 2022, OpenAI publicly launched ChatGPT, a chatbot free for everyone.</p>
         <p>Built on GPT-3.5, it wasn’t just a simple “chat program.” It was the first generative AI that could converse naturally in everyday language and actually help with real-world tasks. It could handle multi-turn dialogues, answer questions precisely, and generate code, emails, essays, novels, almost any text-based task you threw at it.</p>
         <p>Within days, the servers were overwhelmed. Screenshots of AI-written essays, AI-generated code, and AI-scripted dramas flooded social media. Two months later, ChatGPT had surpassed <span class="stat-inline">100 million</span> monthly active users, faster than TikTok, faster than Instagram. The fastest in internet history.</p>
+        <figure class="article-image reveal">
+  <img src="openai.png" alt="Chart created by Remi through Midjourney">
+ </figure>
         <p>For the general public, it felt like technology had suddenly crashed into everyday life. Some had it write love poems. Others asked for cover letters. Many just copied and pasted their coding problems and let AI fix them. For the first time, people realized that by simply stating what you wanted, the machine could create something coherent on its own. Excitement, but also a quiet unease.</p>
         <p>Tech giants were shaken. Google declared a “code red” internal response. Soon after, Microsoft announced a $10 billion investment in OpenAI. Headlines blared: “Will ChatGPT Kill Google Search?” and “AI Will Change the Entire Internet.”</p>
+        <figure class="article-image reveal">
+  <img src="news1.png" alt="Chart created by Remi through Midjourney">
+ </figure>
+ <figure class="article-image reveal">
+  <img src="news2.png" alt="Chart created by Remi through Midjourney">
+ </figure>
         <p>Before that, she jokes that she lived in an “era without large language models”, during math modeling competitions, she had to write every line of code by hand, with no one to ask for help. When something went wrong, she could only stare at the screen in silence. “It was a tough life,” she says with a laugh.</p>
         <p>Now the game has completely changed. Code that used to be out of reach for many can now be generated directly by AI. Not only does it write the code, but it can also provide various model ideas and solutions. In competitions now, it’s no longer about whether you can write it, it’s about whether your thinking is right.</p>
         <p>She adds: you knew the AI wave was unstoppable. If you resist, you’ll just be swept aside. Besides, AI is actually an effective way to solve many problems.</p>
@@ -893,7 +1050,9 @@ section.age-viz{
       </div>
 
       <div class="prose reveal">
-        <p>She is a senior at Hong Kong Baptist University, studying data and media communication. When she started university as a sophomore in 2023, she thought AI was “pretty dumb.” “Back then, AI just felt like an idiot. No deep-thinking mode, and it couldn't even meet the requirements,” Remi recalls. “Writing assignments was still painful. For a 1,000-word essay, I would stay the library for one week.”</p>
+        <p>When Remi Liang started university as a sophomore in 2023, she thought AI was “pretty dumb.” </p>
+          <p>She is a senior at Hong Kong Baptist University, studying data and media communication. </p>
+          <p>“Back then, AI just felt like an idiot. No deep-thinking mode, and it couldn't even meet the requirements,” Remi recalls. “Writing assignments was still painful. For a 1,000-word essay, I would stay the library for one week.”</p>
         <p>In early 2023, Hong Kong's universities embarked on a sharp policy reversal regarding AI tools. The University of Hong Kong led the initial caution by becoming the first in the city to publicly ban ChatGPT in February, citing concerns over academic integrity.</p>
         <p>But just months later, HKU’s Senate endorsed a generative AI policy in June 2023, declaring AI literacy the “fifth literacy” that students must possess alongside reading, writing, numeracy, and critical thinking. That summer, other Hong Kong universities also moved from restriction toward permission or limited approval, including HKUST, HKBU, Lingnan University, and so on.</p>
         <p>For Remi, the moment her life began to reshape, didn't come from the university announcement. It came from a class assignment.</p>
@@ -911,15 +1070,59 @@ section.age-viz{
 
       <div class="prose reveal">
         <p>Launched in 2022 on Discord by David Holz, Midjourney turns simple text prompts into stunning, artistic images and was already a go-to by then. In 2024, Midjourney generates <span class="stat-inline">12 million</span> images per day, and its users grew from <span class="stat-inline">16 million</span> in 2023 to over <span class="stat-inline">19 million</span> on Discord, and generated $300 million in revenue.</p>
-        <p class="sources-inline">Source noted in article: wifitalents.com/midjourney-statistics</p>
         <p>2024 also happened to be a year of technological leaps. In February, OpenAI released Sora for video generation; in March, Adobe launched Firefly for design workflows; in June, Apple unveiled Intelligence for Siri translation, photo editing, and math solving.</p>
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28668040"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28668040/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
         <p>People use AI for far more than homework. Surveys show top uses include responding to emails/texts (45%), financial questions (43%), and travel planning (38%) from National University data, plus creative writing (21%) and work tasks (15%) per Master of Code.</p>
-        <p class="sources-inline">Source noted in article: nu.edu/blog/ai-statistics-trends</p>
-        <p>AI also went from being a tool to being around Remi’s life.</p>
-        <p>First, AI moved into her assignments. Essays that took a week now took two evenings. “I'm not constantly on edge anymore,” she says. “Starting something became easier.”</p>
-        <p>Then it moved into her workflow, generating paragraphs, organizing multiple documents, mimicking specific writing styles.</p>
-        <p>Then it moved into her emotions. When she's overwhelmed, she doesn't want to burden friends. She turns to AI. “Late at night, when I feel like saying something spontaneously, I just open Doubao. ‘What do you think I can do?' It gives me clear, rational answers. If you think of it as medicine, it’s the one with zero side effects.”</p>
-        <p>Finally, it moved into her family. This past Spring Festival, she recommended AI to her mom. Her mom asked it, “Can you guess how old I am?” The AI responded with sweet, flattering things.</p>
+       <p>AI also went from being a tool to being around Remi’s life.</p>
+       <br>
+      </div>
+
+     <section class="remi-scrolly" id="remi-scrolly">
+  <div class="remi-scrolly-inner">
+    <div class="remi-steps">
+      <article class="remi-step active" data-step="assignments">
+        <p><strong>First, AI moved into her assignments.</strong> Essays that took a week now took two evenings. “I'm not constantly on edge anymore,” she says. “Starting something became easier.”</p>
+      </article>
+
+      <article class="remi-step" data-step="workflow">
+        <p><strong>Then it moved into her workflow.</strong> AI began generating paragraphs, organizing multiple documents, and mimicking specific writing styles.</p>
+      </article>
+
+      <article class="remi-step" data-step="emotions">
+        <p><strong>Then it moved into her emotions.</strong> When she feels overwhelmed, she turns to AI for calm, rational answers instead of burdening her friends late at night.</p>
+      </article>
+
+      <article class="remi-step" data-step="family">
+        <p><strong>Finally, it moved into her family.</strong> This past Spring Festival, she recommended AI to her mom. Her mom asked, “Can you guess how old I am?” The AI responded with sweet, flattering things.</p>
+      </article>
+    </div>
+
+    <div class="remi-linkline" aria-hidden="true"></div>
+
+    <aside class="remi-chat-panel">
+      <div class="chat-shell">
+        <div class="chat-topbar">
+          <span class="chat-dot"></span>
+          <span class="chat-title">AI Assistant</span>
+        </div>
+
+        <div class="chat-body">
+          <div class="chat-message user" id="chatQuestion">
+            Can you help me brainstorm ideas for my assignment?
+          </div>
+
+          <div class="chat-message ai typing" id="chatAnswer">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+
+
+      <div class="prose reveal">
         <p>Remi now calls AI her “external brain”.</p>
         <p>“It has saved me an enormous amount of time. Now I can spend that time doing what I actually want, working out, cleaning, watching movies. I never would have imagined that before,” she says. “I used to think AI was dumb. No way I'd confide in it. But now?”</p>
         <p>“It gives me moments when I feel truly alive.”</p>
@@ -1261,6 +1464,127 @@ section.age-viz{
 
   setActiveSection(0);
   updateProgressByScroll();
+  
+
+  const remiScenes = {
+    assignments: {
+      question: "Can you help me brainstorm ideas for my assignment?",
+      answer: "Absolutely. Here are three directions:\n1. Focus on emotional trust between guide dogs and humans.\n2. Use a visual story told from the dog's perspective.\n3. Build a youth-facing campaign with short, memorable hooks.",
+
+    },
+    workflow: {
+      question: "Help me organize these PDFs into a structured flow for my project draft.",
+      answer: "Here is a clearer structure:\n1. Background and problem.\n2. Audience insight.\n3. Message and tone.\n4. Visual strategy.\n5. Campaign execution.\n6. Expected impact.",
+
+    },
+    emotions: {
+      question: "Late at night, when I feel like saying something spontaneously, what do you think I can do?",
+      answer: "Start with one small task.\nWrite one sentence.\nName one feeling.\nYou do not need to solve your whole life tonight.\nYou only need a place to begin.",
+
+    },
+    family: {
+      question: "Can you guess how old I am?",
+      answer: "You sound warm, playful, and full of energy. If I had to guess, I would say you carry yourself with a wonderfully youthful spirit.",
+
+    }
+  };
+
+  const remiSteps = Array.from(document.querySelectorAll(".remi-step"));
+  const chatQuestion = document.getElementById("chatQuestion");
+  const chatAnswer = document.getElementById("chatAnswer");
+
+  let remiTypingTimer;
+  let currentRemiKey = "";
+
+  function playRemiScene(key) {
+    if (!remiScenes[key] || currentRemiKey === key || !chatQuestion || !chatAnswer) return;
+
+    currentRemiKey = key;
+    const scene = remiScenes[key];
+
+    remiSteps.forEach((step) => {
+      step.classList.toggle("active", step.dataset.step === key);
+    });
+
+    chatQuestion.textContent = scene.question;
+    chatAnswer.classList.add("typing");
+    chatAnswer.innerHTML = "<span></span><span></span><span></span>";
+
+
+
+    clearTimeout(remiTypingTimer);
+    remiTypingTimer = setTimeout(() => {
+      chatAnswer.classList.remove("typing");
+      chatAnswer.textContent = scene.answer;
+    }, 550);
+  }
+
+  const remiObserver = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => {
+        const aDist = Math.abs(a.boundingClientRect.top - window.innerHeight * 0.35);
+        const bDist = Math.abs(b.boundingClientRect.top - window.innerHeight * 0.35);
+        return aDist - bDist;
+      });
+
+    if (visible.length) {
+      playRemiScene(visible[0].target.dataset.step);
+    }
+  }, {
+    rootMargin: "-18% 0px -42% 0px",
+    threshold: [0.2, 0.45, 0.7]
+  });
+
+  remiSteps.forEach((step) => remiObserver.observe(step));
+  playRemiScene("assignments");
+
+const immersiveHero = document.querySelector(".hero-immersive");
+const heroOverlay = document.getElementById("heroOverlay");
+const heroTitle = document.getElementById("heroTitle");
+
+function updateHeroScroll() {
+  if (!immersiveHero || !heroOverlay || !heroTitle) return;
+
+  const rect = immersiveHero.getBoundingClientRect();
+  const total = immersiveHero.offsetHeight - window.innerHeight;
+  const passed = Math.min(Math.max(-rect.top, 0), total);
+  const progress = total > 0 ? passed / total : 0;
+
+  const darkness = 0.08 + progress * 0.42;
+  heroOverlay.style.background = `rgba(0,0,0,${darkness})`;
+
+  const titleStart = 0.18;
+  const titleEnd = 0.48;
+  let titleProgress = (progress - titleStart) / (titleEnd - titleStart);
+  titleProgress = Math.max(0, Math.min(1, titleProgress));
+
+  heroTitle.style.opacity = titleProgress;
+  heroTitle.style.transform = `translateY(${28 - titleProgress * 28}px)`;
+}
+
+window.addEventListener("scroll", updateHeroScroll, { passive: true });
+window.addEventListener("resize", updateHeroScroll);
+updateHeroScroll();
+const videoPoster = document.getElementById("videoPoster");
+const videoFrame = document.getElementById("videoFrame");
+
+if (videoPoster && videoFrame) {
+  videoPoster.addEventListener("click", () => {
+    videoFrame.hidden = false;
+    videoFrame.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/5vm-WoBQc1k?autoplay=1&rel=0"
+        title="The First AI-Native Generation Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    `;
+    videoPoster.remove();
+  });
+}
+
+
 </script>
 
 
