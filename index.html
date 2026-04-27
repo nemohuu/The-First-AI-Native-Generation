@@ -561,6 +561,155 @@ footer{
 }
 
 
+
+
+
+#图表
+section.age-viz{
+  width:min(var(--body-w), calc(100vw - 36px)) !important;
+  max-width:var(--body-w) !important;
+  margin:56px auto !important;
+  padding:0 !important;
+}
+
+.age-viz-header{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 0 24px !important;
+}
+
+.age-chart{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+
+.age-viz-source{
+  width:100% !important;
+  max-width:none !important;
+  margin:14px 0 0 !important;
+  color:var(--text-soft);
+  font-size:0.1rem;
+  line-height:1.45;
+  font-style:italic;
+}
+
+.age-row{
+  display:grid;
+  grid-template-columns:160px 1fr 64px;
+  gap:14px 18px;
+  padding:18px 0 16px;
+  border-bottom:1px solid rgba(31,31,27,.08);
+  align-items:center;
+}
+
+.age-row:last-child{
+  border-bottom:none;
+}
+
+.age-label{
+  font-family:'Merriweather', Georgia, serif;
+  font-size:1rem;
+  color:var(--ink);
+}
+
+.age-bar-track{
+  position:relative;
+  width:100%;
+  height:14px;
+  background:rgba(31,31,27,.08);
+  overflow:hidden;
+}
+
+.age-bar{
+  height:100%;
+  background:linear-gradient(90deg, rgba(184,138,59,.95), rgba(184,138,59,.62));
+  transform-origin:left center;
+  transform:scaleX(0);
+  transition:transform 1s cubic-bezier(.22,.9,.35,1);
+}
+
+.age-value{
+  font-family:'Merriweather', Georgia, serif;
+  font-size:1.05rem;
+  color:var(--gold);
+  text-align:right;
+}
+
+.age-note{
+  grid-column:2 / 4;
+  color:var(--text-soft);
+  font-size:.95rem;
+  line-height:1.55;
+  margin-top:-4px;
+}
+
+.age-viz.visible .age-bar{
+  transform:scaleX(1);
+}
+
+@media (max-width:720px){
+  section.age-viz{
+    width:min(var(--body-w), calc(100vw - 36px)) !important;
+  }
+
+  .age-row{
+    grid-template-columns:1fr 56px;
+    gap:10px 12px;
+    padding:16px 0 14px;
+  }
+
+  .age-label{
+    grid-column:1 / 2;
+    font-size:.98rem;
+  }
+
+  .age-bar-track{
+    grid-column:1 / 2;
+  }
+
+  .age-value{
+    grid-column:2 / 3;
+    grid-row:1 / 3;
+    align-self:center;
+    font-size:1rem;
+  }
+
+  .age-note{
+    grid-column:1 / 3;
+    font-size:.9rem;
+    margin-top:2px;
+  }
+}
+
+
+
+
+
+
+
+.article-image{
+  width:min(var(--body-w), calc(100vw - 36px));
+  margin:40px auto;
+}
+
+.article-image img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.article-image figcaption{
+  margin-top:10px;
+  color:var(--text-soft);
+  font-size:.95rem;
+  line-height:1.5;
+  font-style:italic;
+}
+
+
   </style>
 </head>
 <body>
@@ -607,31 +756,76 @@ footer{
       <p>It’s no longer a surprise that AI has become part of university students’ lives right now.</p>
     </section>
 
-    <section class="full-bleed data-band reveal">
-      <div class="data-grid">
-        <div class="data-point">
-          <strong>66%</strong>
-          <span>of people use AI regularly, according to 2025 data.</span>
-        </div>
-        <div class="data-point">
-          <strong>76%</strong>
-          <span>of adults aged 18–29 have used AI tools.</span>
-        </div>
-        <div class="data-point">
-          <strong>250M</strong>
-          <span>users on domestic AI platforms in China.</span>
-        </div>
-        <div class="data-point">
-          <strong>179M</strong>
-          <span>active AI users in the United States.</span>
-        </div>
-      </div>
-    </section>
 
     <section class="prose reveal">
       <p>According to the latest 2025 data, <span class="stat-inline">66%</span> of people use AI regularly. Among all age groups, younger demographics have embraced AI tools with remarkable enthusiasm: <span class="stat-inline">76%</span> of adults aged 18–29 have used AI tools, compared to just <span class="stat-inline">6%</span> of those 65 and older. On university campuses, over <span class="stat-inline">80%</span> of students have used AI in their everyday lives, according to the Chegg Global Student Survey.</p>
+      <br>
+      <section class="age-viz reveal">
+  <div class="age-viz-header">
+    <h3 class="age-viz-title">AI Adoption by Age Group</h3>
+    <p class="age-viz-subtitle">
+      Younger users have integrated AI into everyday life far more deeply than older generations.
+    </p>
+  </div>
+
+  <div class="age-chart">
+    <div class="age-row">
+      <div class="age-label">18–29 Years</div>
+      <div class="age-bar-track">
+        <div class="age-bar" style="width: 76%;"></div>
+      </div>
+      <div class="age-value">76%</div>
+      <div class="age-note">Daily/Weekly: 40% · Learning, content creation, career development</div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">30–44 Years</div>
+      <div class="age-bar-track">
+        <div class="age-bar" style="width: 65%;"></div>
+      </div>
+      <div class="age-value">65%</div>
+      <div class="age-note">Daily/Weekly: 35% · Work productivity, business tasks, research</div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">45–64 Years</div>
+      <div class="age-bar-track">
+        <div class="age-bar" style="width: 51%;"></div>
+      </div>
+      <div class="age-value">51%</div>
+      <div class="age-note">Weekly: 28% · Information seeking, problem solving</div>
+    </div>
+
+    <div class="age-row">
+      <div class="age-label">65+ Years</div>
+      <div class="age-bar-track">
+        <div class="age-bar" style="width: 6%;"></div>
+      </div>
+
+
+      <div class="age-value">6%</div>
+      <div class="age-note">Occasional · Basic assistance, information queries</div>
+    </div>
+    
+  </div>
+
+  <p class="age-viz-source">
+    Data source: The Global Statistics, “Artificial Intelligence (AI) Usage Statistics.
+  </p>
+</section>
       <p>Globally, the numbers vary by country. The United States has the largest absolute user base: <span class="stat-inline">179 million</span> active users. China presents a unique case, with <span class="stat-inline">250 million</span> users on domestic platforms like Quark AI and DeepSeek, operating in a separate ecosystem due to ChatGPT being blocked.</p>
+      
+      
     </section>
+
+
+<br>
+
+
+     <section class="prose reveal">
+      <p>This is the story of the first AI-native generation in college: students who came of age as artificial intelligence shifted from a tool into an environment. Around them, the conversation is loud and unsettled: the concern of controlling, the fear of replacing, and the excitement of adapting. The impact of AI brings an ever-present uncertainty. How do these first AI-native young people respond? How do they cope? Through their voices, one generation captures an age.</p>
+    </section>
+    <br>
 <div class="video-wrap reveal">
   <div class="video-frame">
     <iframe
@@ -643,15 +837,10 @@ footer{
   </div>
  
 </div>
-
-     <section class="prose reveal">
-      <p>This is the story of the first AI-native generation in college: students who came of age as artificial intelligence shifted from a tool into an environment. Around them, the conversation is loud and unsettled: the concern of controlling, the fear of replacing, and the excitement of adapting. The impact of AI brings an ever-present uncertainty. How do these first AI-native young people respond? How do they cope? Through their voices, one generation captures an age.</p>
-    </section>
-
     <section class="section" id="part-1">
       <div class="section-header reveal">
         <div class="section-number">01</div>
-        <h2 class="section-title">Part 1: The Moment That Changes Everything</h2>
+        <h2 class="section-title">The Moment That Changes Everything</h2>
         <div class="section-rule"></div>
       </div>
 
@@ -694,7 +883,7 @@ footer{
     <section class="section" id="part-2">
       <div class="section-header reveal">
         <div class="section-number">02</div>
-        <h2 class="section-title">Part 2: Re-shaped Life: From Tools to Environment</h2>
+        <h2 class="section-title"> Re-shaped Life: From Tools to Environment</h2>
         <div class="section-rule"></div>
       </div>
 
@@ -713,10 +902,12 @@ footer{
         <p>She used Midjourney to generate a dozen images. The result was impressive. “That was my real wow moment.” For just a few dollars, buying access via Taobao, she replaced hiring actors, renting equipment, and post-production. Both cost and time were compressed to the extreme.</p>
       </div>
 
-      <figure class="full-bleed reveal">
-        <div class="placeholder" data-label="Image Placeholder / media/image1.jpeg"></div>
-        <figcaption>Chart created by Remi through Midjourney. Placeholder replacing original visual asset.</figcaption>
-      </figure>
+  <figure class="article-image reveal">
+  <img src="remiphoto.png" alt="Chart created by Remi through Midjourney">
+  <figcaption>Chart created by Remi through Midjourney.</figcaption>
+</figure>
+
+
 
       <div class="prose reveal">
         <p>Launched in 2022 on Discord by David Holz, Midjourney turns simple text prompts into stunning, artistic images and was already a go-to by then. In 2024, Midjourney generates <span class="stat-inline">12 million</span> images per day, and its users grew from <span class="stat-inline">16 million</span> in 2023 to over <span class="stat-inline">19 million</span> on Discord, and generated $300 million in revenue.</p>
@@ -757,13 +948,18 @@ footer{
     <section class="section" id="part-3">
       <div class="section-header reveal">
         <div class="section-number">03</div>
-        <h2 class="section-title">Part 3: Human Intelligence or Artificial Intelligence?</h2>
+        <h2 class="section-title">Human Intelligence or Artificial Intelligence?</h2>
         <div class="section-rule"></div>
       </div>
 
       <div class="prose reveal">
         <p>The shift in technology is changing not just how we do things, but seeping inward, rewiring our habits of thought, redefining what ability means, and quietly reshaping our sense of self-worth.</p>
         <p>As a junior Applied Math student at Harvard, Burnie Legette began to notice a change. He might be losing the ability to “think”.</p>
+       <figure class="article-image reveal">
+  <img src="300.svg" alt="AI usage visualization">
+  <figcaption>A data graphic showing AI usage patterns across age groups.</figcaption>
+</figure>
+
         <p>In the past, facing a proof problem, he would have pushed himself through every step, scribbling calculations back and forth, spending hours coping a complex question. But now, whenever his thinking stuck, he would simply open a dialog with ChatGPT.</p>
         <p>“I can go through STEM classes and walk away not having learned how to execute much, because I relied on AI for assignments.”</p>
         <p>In his proof-based math courses, reasoning used to be the core of the craft. But now, because of AI, he could feel his critical thinking and reasoning abilities are becoming “not as strong as I would like”.</p>
@@ -824,7 +1020,7 @@ footer{
     <section class="section" id="part-4">
       <div class="section-header reveal">
         <div class="section-number">04</div>
-        <h2 class="section-title">Part 4: To Use or Not to Use, that's a question</h2>
+        <h2 class="section-title">To Use or Not to Use, that's a question</h2>
         <div class="section-rule"></div>
       </div>
 
@@ -894,7 +1090,7 @@ footer{
     <section class="section" id="part-5">
       <div class="section-header reveal">
         <div class="section-number">05</div>
-        <h2 class="section-title">Part 5: Future Jobs?</h2>
+        <h2 class="section-title">Future Jobs?</h2>
         <div class="section-rule"></div>
       </div>
 
