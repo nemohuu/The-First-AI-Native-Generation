@@ -679,6 +679,7 @@ footer{
   font-style:italic;
 }
 
+
 .remi-scrolly{
   width:min(1100px, calc(100vw - 24px));
   margin:48px auto 72px;
@@ -898,6 +899,19 @@ footer{
     min-height:280px;
   }
 }
+.article-image-portrait{
+  width:min(var(--body-w), calc(100vw - 36px));
+  margin:40px auto;
+  text-align:center;
+}
+
+.article-image-portrait img{
+  width:auto;
+  max-width:100%;
+  max-height:88vh;
+  height:auto;
+  display:inline-block;
+}
 
 
 
@@ -973,7 +987,7 @@ footer{
 <div class="video-wrap reveal">
   <div class="video-card" id="videoCard">
     <button class="video-poster" id="videoPoster" aria-label="Play video">
-      <img src="pic1.png" alt="Video cover for The First AI-Native Generation">
+      <img src="bg.png" alt="Video cover for The First AI-Native Generation">
       <span class="video-play">
         <span class="video-play-triangle"></span>
       </span>
@@ -999,7 +1013,11 @@ footer{
         <p>“The level of uncertainty is so huge,” said Yifan. When conducting data analysis, she cannot have absolute control over the results of the experiment as in ordinary computer languages. Each time, the outcome can suddenly improve or deteriorate.</p>
         <p>“I have to wake up every four hours to check the results. If the results are bad, you need to adjust the parameters and run it again. So at that time, I hate it,” she said.</p>
         <p>Back then, AI had no “Chat”, there is only a “black box.” There were too many parameters for humans to understand. During training, the model could “explode” or “vanish” at any moment. “Everything would be going fine for a few moments, and suddenly it would just blow up. No one knew why.” That’s why everyone called it “alchemy（炼丹）.”</p>
+      <figure class="article-image reveal">
+      <img src="box1.png" alt="Chart created by Remi through Midjourney">
+    </figure>
       </div>
+
 
       <div class="pullquote reveal">
         <blockquote>“It felt like the Industrial Revolution. The way we learn has been completely reshaped.”</blockquote>
@@ -1021,13 +1039,13 @@ footer{
  <figure class="article-image reveal">
   <img src="news2.png" alt="Chart created by Remi through Midjourney">
  </figure>
-        <p>Before that, she jokes that she lived in an “era without large language models”, during math modeling competitions, she had to write every line of code by hand, with no one to ask for help. When something went wrong, she could only stare at the screen in silence. “It was a tough life,” she says with a laugh.</p>
+        <p>Before ChatGPT came out, Yifan jokes that she lived in an “era without large language models”, during math modeling competitions, she had to write every line of code by hand, with no one to ask for help. When something went wrong, she could only stare at the screen in silence. “It was a tough life,” she says with a laugh.</p>
         <p>Now the game has completely changed. Code that used to be out of reach for many can now be generated directly by AI. Not only does it write the code, but it can also provide various model ideas and solutions. In competitions now, it’s no longer about whether you can write it, it’s about whether your thinking is right.</p>
-        <p>She adds: you knew the AI wave was unstoppable. If you resist, you’ll just be swept aside. Besides, AI is actually an effective way to solve many problems.</p>
+        <p>She adds: you knew the AI wave was unstoppable. AI is actually an effective way to solve many problems. If you resist, you’ll just be swept aside. </p>
         <p>Yifan wasn’t the only student who felt the shift.</p>
         <p>Linda Lam graduated from Hong Kong Baptist University with a degree in English Language Education. At the end of 2022, right after ChatGPT first launched, she got access through a university-provided overseas account, making her one of the very first users.</p>
         <p>“At the time, you still needed U.S. IP verification. It only became widely available later with Poe.” The first time she used it, she just chatted with it for fun. Only later did she start feeding it her homework.</p>
-        <p>She pasted a question into ChatGPT, and the answer it gave back was 80 to 90 percent accurate, enough to get a B+ and get by. Especially for those general education assignments: short-answer questions, long-answer questions, even short essays. If she had done them herself, she could have reached the same level, but AI was so much faster. Before, she had to slowly search for information and piece things together. Now, she just threw the question in, and the answer came out.</p>
+        <p>She pasted a question into ChatGPT, and the answer it gave back was 80 to 90 percent accurate, enough to get a B+ and get by. Especially for general education assignments: short form and long form answers, even short essays. Before, she had to slowly search for information and piece things together. Now, she just threw the question in, and the answer came out. AI was so much faster.</p>
         <p>The first time she saw what AI could generate, one thought crossed her mind: “All those homework assignments I used to do, they feel so meaningless now. There’s no point in keeping them. AI can do all of it anyway.”</p>
         <p>What felt even more absurd to her was class group discussion. “Discussing with AI,” she says, “is more productive than discussing with them. They don’t know as much as AI does.”</p>
         <p>Excited, she ran to recommend it to her classmates. No one believed her.</p>
@@ -1151,34 +1169,40 @@ footer{
     <section class="section" id="part-3">
       <div class="section-header reveal">
         <div class="section-number">03</div>
-        <h2 class="section-title">Human Intelligence or Artificial Intelligence?</h2>
+        <h2 class="section-title">Question of Value: Human Intelligence or Artificial Intelligence?</h2>
         <div class="section-rule"></div>
       </div>
 
       <div class="prose reveal">
         <p>The shift in technology is changing not just how we do things, but seeping inward, rewiring our habits of thought, redefining what ability means, and quietly reshaping our sense of self-worth.</p>
         <p>As a junior Applied Math student at Harvard, Burnie Legette began to notice a change. He might be losing the ability to “think”.</p>
-       <figure class="article-image reveal">
-  <img src="300.svg" alt="AI usage visualization">
-  <figcaption>A data graphic showing AI usage patterns across age groups.</figcaption>
+        <p>In the past, facing a proof problem, he would have pushed himself through every step, scribbling calculations back and forth, spending hours coping a complex question. But now, whenever his thinking stuck, he would simply open a dialog with ChatGPT.</p>
+
+        <figure class="article-image-portrait reveal">
+  <img src="harvard.png" alt="Harvard University campus">
+  <figcaption>Harvard University campus. (Shot by Hu Xinyue)</figcaption>
 </figure>
 
-        <p>In the past, facing a proof problem, he would have pushed himself through every step, scribbling calculations back and forth, spending hours coping a complex question. But now, whenever his thinking stuck, he would simply open a dialog with ChatGPT.</p>
-        <p>“I can go through STEM classes and walk away not having learned how to execute much, because I relied on AI for assignments.”</p>
+           <p>“I can go through STEM classes and walk away not having learned how to execute much, because I relied on AI for assignments.”</p>
+
+        
         <p>In his proof-based math courses, reasoning used to be the core of the craft. But now, because of AI, he could feel his critical thinking and reasoning abilities are becoming “not as strong as I would like”.</p>
         <p>Burnie noticed he wasn't alone. In his math and CS classes, as students were relying on AI tools, professors had observed a significant drop in office hours attendance. In one course, the midterm average fell twenty points from the previous year.</p>
         <p>“I think that's partially because people aren't internalizing the information,” said Burnie.</p>
         <p>Burnie's concern wasn't unfounded. Multiple studies have shown that generative AI is quietly reshaping how people think.</p>
-        <p>A 2025 international survey from the University of Southern California found that in higher education, most students use AI for “executive help”, getting quick answers with minimal effort, rather than truly understanding the material.</p>
+       <br>
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28717410"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28717410/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        <p>A 2025 survey from the Higher Education Policy Institute (HEPI) and Kortext found that in higher education, most students use AI for "executive help", such as generating text, summarizing notes, or translating material to gain efficiency with minimal effort rather than for deep conceptual engagement.</p>
         <p>Research from the MIT Media Lab pointed in the same direction: students who relied heavily on AI for writing showed significantly lower brain activity and neural connectivity compared to those who completed tasks on their own, suggesting that AI may be reducing the mental effort required for deep thinking.</p>
         <p>In that study, 54 students were divided into three groups. One group wrote essays using ChatGPT. Another used only Google search. The third relied on no tools at all, just their own minds. Over three months, each student wrote three 20-minute argumentative essays.</p>
         <p>The results were striking. Students who wrote entirely on their own showed the strongest brain activity. Those who used Google search fell in the middle. And the ChatGPT-dependent group showed the weakest brain activity, the more they relied on AI, the less their brains seemed to work.</p>
       </div>
 
-      <figure class="full-bleed reveal">
-        <div class="placeholder" data-label="Image Placeholder / media/image2.jpeg"></div>
-        <figcaption>Illustrative placeholder for research-related chart or brain-activity visual mentioned in the article.</figcaption>
-      </figure>
+      <figure class="article-image reveal">
+      <img src="think.png" alt="Chart created by Remi through Midjourney">
+    <figcaption>Illustration comparing independent thinking (left) with AI-assisted thinking. Created by OpenAI</figcaption>
+
+    </figure>
 
       <div class="prose reveal">
         <p>Burnie felt frustrated and lost.</p>
@@ -1199,6 +1223,10 @@ footer{
         <p>If being a developer no longer meant what it used to, then what did it mean? And if the world no longer needed him to write every line of code, then what was he supposed to do with his skills?</p>
         <p>In February 2026, Anthropic released an 18-page report stating that software development is undergoing its largest paradigm shift since the graphical user interface.</p>
         <p>The report's core conclusion shook the industry: anyone can become a developer. Programming is no longer just for professionals. Employees from legal, marketing, and operations can now build software with AI agents. The barrier is collapsing.</p>
+               <figure class="article-image reveal">
+  <img src="300.svg" alt="AI usage visualization">
+  <figcaption>An inforgraohic showing the identity change of developers through Anthropic 2025 report. Created by OpenAI.</figcaption>
+</figure>
         <p>Programmers are being redefined. Building software no longer means writing code. Engineers are shifting from “coders” to “conductors”, evaluating AI output, providing direction, and ensuring the right problems get solved. Anthropic calls this new role the “AI conductor.” Those who only code are being phased out, while those with architectural and strategic skills are becoming more competitive.</p>
       </div>
 
@@ -1229,7 +1257,12 @@ footer{
 
       <div class="prose reveal">
         <p>At Emerson College, there is an unwritten rule.</p>
+         
         <p>“People don't want to admit they use AI because it's embarrassing,” said Norah, a junior majoring in Journalism and minoring in Marketing. “Especially at Emerson where it's so creative-heavy.”</p>
+            <figure class="article-image reveal">
+      <img src="emerson1.png" alt="Chart created by Remi through Midjourney">
+      <figcaption>Emerson College classroom. (Shot by Hu Xinyue)</figcaption>
+    </figure>
         <p>She told a story about a girl who joked about using ChatGPT to write an essay. The whole room went silent. No one laughed.</p>
         <p>“It's like a ‘badge of honor’ here to do things yourself and preserve your ability to think critically.”</p>
         <p>Norah is a writer. A creative person. And she tries to stay away from AI.</p>
