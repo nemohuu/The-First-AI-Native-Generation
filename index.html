@@ -83,9 +83,12 @@ img{
 
 .progress-tabs{
   display:grid;
-  grid-template-columns:repeat(7, minmax(0, 1fr));
+  grid-template-columns:repeat(5, minmax(0, 1fr));
   align-items:center;
+  width:min(760px, 100%);
+  margin:0 auto;
 }
+
 
 .progress-tab{
   display:flex;
@@ -925,14 +928,13 @@ footer{
     </div>
 
     <div class="progress-tabs">
-      <a href="#intro" class="progress-tab active" data-target="intro">Intro</a>
-      <a href="#part-1" class="progress-tab" data-target="part-1">Moment</a>
-      <a href="#part-2" class="progress-tab" data-target="part-2">Environment</a>
-      <a href="#part-3" class="progress-tab" data-target="part-3">Thinking</a>
-      <a href="#part-4" class="progress-tab" data-target="part-4">Use or Not</a>
-      <a href="#part-5" class="progress-tab" data-target="part-5">Jobs</a>
-      <a href="#outro" class="progress-tab" data-target="outro">Outro</a>
-    </div>
+  <a href="#part-1" class="progress-tab active" data-target="part-1">The Moment</a>
+  <a href="#part-2" class="progress-tab" data-target="part-2">Re-shaped Life</a>
+  <a href="#part-3" class="progress-tab" data-target="part-3">Question of Value</a>
+  <a href="#part-4" class="progress-tab" data-target="part-4">Use or Not</a>
+  <a href="#part-5" class="progress-tab" data-target="part-5">The Future</a>
+</div>
+
   </div>
 </nav>
 
@@ -1421,15 +1423,14 @@ footer{
     revealObserver.observe(el);
   });
 
-  const sections = [
-    { id: "intro", label: "Intro" },
-    { id: "part-1", label: "Moment" },
-    { id: "part-2", label: "Environment" },
-    { id: "part-3", label: "Thinking" },
-    { id: "part-4", label: "Use or Not" },
-    { id: "part-5", label: "Jobs" },
-    { id: "outro", label: "Outro" }
-  ];
+ const sections = [
+  { id: "part-1", label: "The Moment" },
+  { id: "part-2", label: "Re-shaped Life" },
+  { id: "part-3", label: "Question of Value" },
+  { id: "part-4", label: "Use or Not" },
+  { id: "part-5", label: "The Future" }
+];
+
 
   const sectionEls = sections
     .map((item) => document.getElementById(item.id))
