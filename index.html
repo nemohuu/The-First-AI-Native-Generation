@@ -132,9 +132,14 @@ img{
 .intro-scrolly{
   position:relative;
   min-height:320vh;
-  background:#111;
+  background-image:url('start.png');
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
   color:#f7efe2;
 }
+
 
 .intro-pin{
   position:sticky;
@@ -152,9 +157,10 @@ img{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 18% 18%, rgba(184,138,59,.16), transparent 34%),
-    linear-gradient(180deg, rgba(17,17,17,.94), rgba(17,17,17,.76));
+    radial-gradient(circle at 18% 18%, rgba(184,138,59,.12), transparent 34%),
+    rgba(0,0,0,.52);
 }
+
 
 .intro-copy{
   position:relative;
