@@ -7,6 +7,7 @@
   <title>The First AI-Native Generation</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script src="https://public.flourish.studio/resources/embed.js"></script>
 
   <style>
    :root{
@@ -83,7 +84,7 @@ img{
 
 .progress-tabs{
   display:grid;
-  grid-template-columns:repeat(5, minmax(0, 1fr));
+  grid-template-columns:repeat(4, minmax(0, 1fr));
   align-items:center;
   width:min(760px, 100%);
   margin:0 auto;
@@ -128,11 +129,108 @@ img{
 .progress-tab.active{
   color:var(--gold);
 }
+.intro-scrolly{
+  position:relative;
+  min-height:320vh;
+  background:#111;
+  color:#f7efe2;
+}
+
+.intro-pin{
+  position:sticky;
+  top:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:84px 24px 64px;
+  overflow:hidden;
+}
+
+.intro-pin::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(184,138,59,.16), transparent 34%),
+    linear-gradient(180deg, rgba(17,17,17,.94), rgba(17,17,17,.76));
+}
+
+.intro-copy{
+  position:relative;
+  width:min(880px, 100%);
+  min-height:48vh;
+}
+
+.intro-line{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  font-family:'Merriweather', Georgia, serif;
+  font-size:clamp(1.55rem, 3.4vw, 3.3rem);
+  line-height:1.28;
+  text-align:center;
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+
+.intro-line.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.intro-scroll-cue{
+  position:absolute;
+  left:50%;
+  bottom:28px;
+  transform:translateX(-50%);
+  width:1px;
+  height:54px;
+  background:rgba(247,239,226,.22);
+}
+
+.intro-scroll-cue::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+  transform:translateX(-50%);
+  animation:introCue 1.8s ease-in-out infinite;
+}
+
+@keyframes introCue{
+  0%{ top:0; opacity:0; }
+  20%{ opacity:1; }
+  100%{ top:48px; opacity:0; }
+}
+
+@media (max-width:720px){
+  .intro-scrolly{
+    min-height:340vh;
+  }
+
+  .intro-copy{
+    min-height:58vh;
+  }
+
+  .intro-line{
+    font-size:clamp(1.35rem, 8vw, 2.25rem);
+  }
+}
+
 .hero-immersive{
   position:relative;
   height:145vh;
   min-height:900px;
-  background-image:url('pic1.png');
+  background-image:url('bgg.png');
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
@@ -351,7 +449,7 @@ main{
 .pullquote blockquote{
   margin:0;
   font-family:'Merriweather', Georgia, serif;
-  font-size:clamp(1.9rem, 4vw, 3.5rem);
+  font-size:clamp(1.45rem, 2.8vw, 2.55rem);
   line-height:1.18;
   font-style:italic;
   letter-spacing:-.02em;
@@ -927,17 +1025,36 @@ footer{
       <div class="progress-fill" id="progressFill"></div>
     </div>
 
-    <div class="progress-tabs">
-  <a href="#part-1" class="progress-tab active" data-target="part-1">The Moment</a>
-  <a href="#part-2" class="progress-tab" data-target="part-2">Re-shaped Life</a>
-  <a href="#part-3" class="progress-tab" data-target="part-3">Question of Value</a>
-  <a href="#part-4" class="progress-tab" data-target="part-4">Use or Not</a>
-  <a href="#part-5" class="progress-tab" data-target="part-5">The Future</a>
+   <div class="progress-tabs">
+  <a href="#part-1" class="progress-tab active" data-target="part-1">The Wave</a>
+  <a href="#part-2" class="progress-tab" data-target="part-2">The Lost</a>
+  <a href="#part-3" class="progress-tab" data-target="part-3">The Split</a>
+  <a href="#part-4" class="progress-tab" data-target="part-4">The Future Ahead</a>
 </div>
+
 
   </div>
 </nav>
 
+
+<section class="intro-scrolly" id="opening-words">
+  <div class="intro-pin">
+    <div class="intro-copy">
+      <p class="intro-line active">Before ChatGPT, Wang Yifan wrote every line of code herself. She had to wake up every four hours to check on her models, then do it again the next night.</p>
+
+      <p class="intro-line">The models of neural networks were a black box. She called it “alchemy.” That was the world before the wave hit.</p>
+
+      <p class="intro-line">When Yifan and her peers first entered college, AI wasn't yet a thing. They stood at a familiar crossroads: pick a major, learn the skills, follow the plan.</p>
+
+      <p class="intro-line">Some wanted to be coders. Others, journalists, marketers, artists. They were still exploring, still figuring out which direction to go.</p>
+
+      <p class="intro-line">Then everything changed. On November 30, 2022, OpenAI launched ChatGPT.</p>
+
+      <p class="intro-line">Within two months, it had 100 million users. Faster than TikTok. Faster than Instagram. The ground shifted beneath their feet.</p>
+    </div>
+    <div class="intro-scroll-cue" aria-hidden="true"></div>
+  </div>
+</section>
 
 
 <section class="hero-immersive" id="intro">
@@ -955,97 +1072,369 @@ footer{
 
 
 
-  <main>
-   
+<main>
 
-    <section class="prose lead reveal visible">
-      <p>“See, this advertisement is made of AI, isn’t that interesting?” said Professor Randy Harrison during his Marketing and Marketing Communication class at Emerson College in the U.S., showing an AI-generated ad of a woman promoting a music app.</p>
-      <p>The students’ reactions were quiet. Instead of cheering or looking surprised, they frowned. Some giggled in disbelief.</p>
-      <p>“I don’t think I have learned anything useful in this class,” said Lena, a freshman majoring in Marketing Communication at Emerson. “It’s a whole course on talking to AI.”</p>
-      <p>“I don’t use AI because I think it’s depriving my creativity,” said Norah Lesspeern, a Journalism student minoring in Marketing.</p>
-      <p>On the other side of the earth, AI is also taking over the classroom. In Hong Kong, Nick Zhang is teaching a new course called “Generative AI-Assisted Reporting,” which introduces large language models and AI into the journalism reporting process.</p>
-      <p>It’s no longer a surprise that AI has become part of university students’ lives right now.</p>
-    </section>
+  <section class="prose lead reveal visible">
+    <p>It is no longer a surprise that AI has become part of university students' lives right now.</p>
 
+    <p>According to the latest 2025 data, <span class="stat-inline">66%</span> of people use AI regularly. Among all age groups, younger demographics have embraced AI tools with remarkable enthusiasm: <span class="stat-inline">76%</span> of adults aged 18–29 have used AI tools, compared to just <span class="stat-inline">6%</span> of those 65 and older. On university campuses, over <span class="stat-inline">80%</span> of students have used AI in their everyday lives, according to the Chegg Global Student Survey.</p>
+<div class="flourish-embed flourish-pictogram" data-src="visualisation/28712561">
+  <noscript>
+    <img src="https://public.flourish.studio/visualisation/28712561/thumbnail" width="100%" alt="pictogram visualization" />
+  </noscript>
+</div>
 
-    <section class="prose reveal">
-      <p>According to the latest 2025 data, <span class="stat-inline">66%</span> of people use AI regularly. Among all age groups, younger demographics have embraced AI tools with remarkable enthusiasm: <span class="stat-inline">76%</span> of adults aged 18–29 have used AI tools, compared to just <span class="stat-inline">6%</span> of those 65 and older. On university campuses, over <span class="stat-inline">80%</span> of students have used AI in their everyday lives, according to the Chegg Global Student Survey.</p>
-      <br>
-      <div class="flourish-embed flourish-pictogram" data-src="visualisation/28712561"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28712561/thumbnail" width="100%" alt="pictogram visualization" /></noscript></div>
-<br>
-      <p>Globally, the numbers vary by country. The United States has the largest absolute user base: <span class="stat-inline">179 million</span> active users. China presents a unique case, with <span class="stat-inline">250 million</span> users on domestic platforms like Quark AI and DeepSeek, operating in a separate ecosystem due to ChatGPT being blocked.</p>
-      
-      
-    </section>
+    <p>Globally, the numbers vary by country. The United States has the largest absolute user base: <span class="stat-inline">179 million</span> active users. China presents a unique case, with <span class="stat-inline">250 million</span> users on domestic platforms like Quark AI and DeepSeek, operating in a separate ecosystem due to ChatGPT being blocked.</p>
 
+    <p>This is the story of the first AI-native generation in college: students who came of age as artificial intelligence shifted from a tool into an environment. Around them, the conversation is loud and unsettled: the concern of controlling, the fear of replacing, and the excitement of adapting. The impact of AI brings an ever-present uncertainty. How do these first AI-native young people respond? How do they cope? Through their voices, one generation captures an age.</p>
+  </section>
 
-<br>
+  <div class="video-wrap reveal">
+    <div class="video-card" id="videoCard">
+      <button class="video-poster" id="videoPoster" aria-label="Play video">
+        <img src="bg.png" alt="Video cover for The First AI-Native Generation">
+        <span class="video-play">
+          <span class="video-play-triangle"></span>
+        </span>
+        <span class="video-overlay-text">How do university students think of AI?</span>
+      </button>
 
-
-     <section class="prose reveal">
-      <p>This is the story of the first AI-native generation in college: students who came of age as artificial intelligence shifted from a tool into an environment. Around them, the conversation is loud and unsettled: the concern of controlling, the fear of replacing, and the excitement of adapting. The impact of AI brings an ever-present uncertainty. How do these first AI-native young people respond? How do they cope? Through their voices, one generation captures an age.</p>
-    </section>
-    <br>
-<div class="video-wrap reveal">
-  <div class="video-card" id="videoCard">
-    <button class="video-poster" id="videoPoster" aria-label="Play video">
-      <img src="bg.png" alt="Video cover for The First AI-Native Generation">
-      <span class="video-play">
-        <span class="video-play-triangle"></span>
-      </span>
-      <span class="video-overlay-text">How do university students think of AI?</span>
-    </button>
-
-    <div class="video-frame" id="videoFrame" hidden></div>
+      <div class="video-frame" id="videoFrame" hidden></div>
+    </div>
   </div>
-</div>
 
-</div>
-    <section class="section" id="part-1">
-      <div class="section-header reveal">
-        <div class="section-number">01</div>
-        <h2 class="section-title">The Moment That Changes Everything</h2>
-        <div class="section-rule"></div>
-      </div>
+  <section class="section" id="part-1">
+    <div class="section-header reveal">
+      <div class="section-number">01</div>
+      <h2 class="section-title">The Wave</h2>
+      <div class="section-rule"></div>
+    </div>
 
-      <div class="prose reveal">
-        <p>Before ChatGPT emerged, Wang Yifan was still writing hundreds of codes through her hands.</p>
-        <p>Graduated from Fudan University with a degree in Information Security and now a graduate student in Artificial Intelligence at the University of Hong Kong, Yifan jokes that she used to write code the “classical, handmade way.”</p>
-        <p>In her freshman year, she found learning neural networks as a “painful” experience.</p>
-        <p>“The level of uncertainty is so huge,” said Yifan. When conducting data analysis, she cannot have absolute control over the results of the experiment as in ordinary computer languages. Each time, the outcome can suddenly improve or deteriorate.</p>
-        <p>“I have to wake up every four hours to check the results. If the results are bad, you need to adjust the parameters and run it again. So at that time, I hate it,” she said.</p>
-        <p>Back then, AI had no “Chat”, there is only a “black box.” There were too many parameters for humans to understand. During training, the model could “explode” or “vanish” at any moment. “Everything would be going fine for a few moments, and suddenly it would just blow up. No one knew why.” That’s why everyone called it “alchemy（炼丹）.”</p>
-      <figure class="article-image reveal">
-      <img src="box1.png" alt="Chart created by Remi through Midjourney">
+    <div class="pullquote reveal">
+      <blockquote>“It felt like the Industrial Revolution. The way we learn has been completely reshaped.”</blockquote>
+      <cite>Yifan</cite>
+    </div>
+
+    <div class="prose reveal">
+      <p>Yifan graduated from Fudan University with a degree in Information Security and is now a graduate student in Artificial Intelligence at the University of Hong Kong. When she started college, ChatGPT did not exist.</p>
+
+      <p>In her freshman year, she found learning neural networks as a “painful” experience.</p>
+
+      <p>“The level of uncertainty is so huge,” said Yifan. When conducting data analysis, she cannot have absolute control over the results of the experiment as in ordinary computer languages. Each time, the outcome can suddenly improve or deteriorate.</p>
+
+      <p>“I have to wake up every four hours to check the results. If the results are bad, you need to adjust the parameters and run it again. So at that time, I hate it,” she said.</p>
+
+      <p>Back then, AI had no “Chat”, there is only a “black box.” There were too many parameters for humans to understand. During training, the model could “explode” or “vanish” at any moment. “Everything would be going fine for a few moments, and suddenly it would just blow up. No one knew why.” That’s why everyone called it “alchemy（炼丹）.”</p>
+    </div>
+
+    <figure class="article-image reveal">
+      <img src="box1.png" alt="Neural network black box illustration">
     </figure>
+
+    <div class="prose reveal">
+      <p>That was the world Yifan knew. But the technology had been quietly building for years.</p>
+    </div>
+
+<style>
+  .ai-evolution-section {
+    --ai-ink: #202326;
+    --ai-muted: #666d73;
+    --ai-line: rgba(32, 35, 38, 0.16);
+    --ai-accent: #8a6334;
+    --ai-card: #f8f6f1;
+    --ai-card-soft: #fbfaf7;
+    --ai-future: #f0f0ee;
+    margin: 5rem 0;
+    color: var(--ai-ink);
+    font-family: inherit;
+  }
+
+  .ai-evolution-section * {
+    box-sizing: border-box;
+  }
+
+  .ai-evolution-header {
+    width: min(860px, 100%);
+    margin: 0 auto 5rem;
+    text-align: center;
+  }
+
+  .ai-evolution-title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.08;
+    font-weight: 650;
+    letter-spacing: 0;
+  }
+
+  .ai-evolution-subtitle {
+    margin: 0;
+    color: var(--ai-muted);
+    font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+    line-height: 1.65;
+  }
+
+  .ai-evolution-timeline {
+    position: relative;
+    width: min(1180px, calc(100vw - 36px));
+    max-width: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ai-evolution-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--ai-line);
+    transform: translateX(-50%);
+  }
+
+  .ai-evolution-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(360px, 1fr) 132px minmax(420px, 1.1fr);
+    align-items: center;
+    min-height: 82vh;
+    padding: 5.5rem 0;
+  }
+
+  .ai-evolution-year {
+    position: relative;
+    z-index: 2;
+    grid-column: 2;
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    width: 92px;
+    min-height: 92px;
+    padding: 0.45rem;
+    border: 1px solid rgba(32, 35, 38, 0.12);
+    border-radius: 999px;
+    background: #fff;
+    color: rgba(32, 35, 38, 0.32);
+    font-size: 0.9rem;
+    font-weight: 760;
+    line-height: 1.12;
+    text-align: center;
+    letter-spacing: 0.03em;
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.94);
+    transition: color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, transform 0.45s ease, background 0.45s ease;
+  }
+
+  .ai-evolution-item.is-active .ai-evolution-year {
+    color: var(--ai-accent);
+    border-color: rgba(138, 99, 52, 0.52);
+    background: #fffdf8;
+    box-shadow:
+      0 0 0 12px rgba(138, 99, 52, 0.08),
+      0 18px 42px rgba(32, 35, 38, 0.12);
+    transform: scale(1.12);
+  }
+
+  .ai-evolution-takeaway {
+    grid-column: 1;
+    justify-self: end;
+    width: min(100%, 470px);
+    margin: 0;
+    padding-right: 3.8rem;
+    color: var(--ai-ink);
+    font-size: clamp(1.15rem, 2.8vw, 2.65rem);
+    line-height: 1.02;
+    font-weight: 720;
+    letter-spacing: 0;
+    text-align: right;
+  }
+
+  .ai-evolution-card {
+    grid-column: 3;
+    justify-self: start;
+    width: min(100%, 500px);
+    padding: 1.55rem 1.65rem;
+    border: 1px solid rgba(32, 35, 38, 0.08);
+    border-radius: 8px;
+    background: var(--ai-card);
+    box-shadow: 0 18px 42px rgba(32, 35, 38, 0.055);
+  }
+
+  .ai-evolution-name {
+    margin: 0 0 0.65rem;
+    font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+    line-height: 1.2;
+    font-weight: 720;
+    letter-spacing: 0;
+  }
+
+  .ai-evolution-copy {
+    margin: 0;
+    color: #42474b;
+    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    line-height: 1.65;
+  }
+
+  .ai-evolution-item:nth-child(even) .ai-evolution-card {
+    background: var(--ai-card-soft);
+  }
+
+  .ai-evolution-item.is-future .ai-evolution-card {
+    background: var(--ai-future);
+    border-style: dashed;
+    box-shadow: none;
+  }
+
+  .ai-evolution-item.is-future .ai-evolution-year {
+    background: #f8f8f6;
+  }
+
+  @media (max-width: 760px) {
+    .ai-evolution-section {
+      margin: 3.5rem 0;
+    }
+
+    .ai-evolution-header {
+      margin-bottom: 3rem;
+      text-align: left;
+    }
+
+    .ai-evolution-timeline {
+      width: 100%;
+      margin-left: 0;
+      transform: none;
+    }
+
+    .ai-evolution-timeline::before {
+      left: 39px;
+    }
+
+    .ai-evolution-item {
+      grid-template-columns: 78px minmax(0, 1fr);
+      min-height: auto;
+      padding: 3rem 0;
+      row-gap: 1rem;
+      align-items: start;
+    }
+
+    .ai-evolution-year {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      width: 64px;
+      min-height: 64px;
+      font-size: 0.74rem;
+    }
+
+    .ai-evolution-takeaway {
+      grid-column: 2;
+      justify-self: stretch;
+      width: 100%;
+      padding-right: 0;
+      text-align: left;
+      font-size: clamp(1.25rem, 6vw, 1.85rem);
+    }
+
+    .ai-evolution-card {
+      grid-column: 2;
+      justify-self: stretch;
+      width: 100%;
+      padding: 1.15rem 1.2rem;
+    }
+  }
+</style>
+
+
+<section class="ai-evolution-section" aria-labelledby="ai-evolution-title">
+  <div class="ai-evolution-header">
+    <h2 class="ai-evolution-title" id="ai-evolution-title">The Evolution of AI: From Perception to Action</h2>
+    <p class="ai-evolution-subtitle">AI does not progress in a straight line — it crosses human-level thresholds in different domains, one by one.</p>
+  </div>
+
+  <div class="ai-evolution-timeline">
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI begins to “see”</p>
+      <div class="ai-evolution-year">2012</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">AlexNet</h3>
+        <p class="ai-evolution-copy">AI surpasses humans in recognizing images, but still does not truly understand what it sees.</p>
       </div>
+    </article>
 
-
-      <div class="pullquote reveal">
-        <blockquote>“It felt like the Industrial Revolution. The way we learn has been completely reshaped.”</blockquote>
-        <cite>Yifan</cite>
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI becomes scalable</p>
+      <div class="ai-evolution-year">2017</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">Transformer</h3>
+        <p class="ai-evolution-copy">Introduces the foundation for modern AI systems, making large-scale learning possible but not yet intelligent.</p>
       </div>
+    </article>
 
-      <div class="prose reveal">
-        <p>On November 30, 2022, OpenAI publicly launched ChatGPT, a chatbot free for everyone.</p>
-        <p>Built on GPT-3.5, it wasn’t just a simple “chat program.” It was the first generative AI that could converse naturally in everyday language and actually help with real-world tasks. It could handle multi-turn dialogues, answer questions precisely, and generate code, emails, essays, novels, almost any text-based task you threw at it.</p>
-        <p>Within days, the servers were overwhelmed. Screenshots of AI-written essays, AI-generated code, and AI-scripted dramas flooded social media. Two months later, ChatGPT had surpassed <span class="stat-inline">100 million</span> monthly active users, faster than TikTok, faster than Instagram. The fastest in internet history.</p>
-        <figure class="article-image reveal">
-  <img src="openai.png" alt="Chart created by Remi through Midjourney">
- </figure>
-        <p>For the general public, it felt like technology had suddenly crashed into everyday life. Some had it write love poems. Others asked for cover letters. Many just copied and pasted their coding problems and let AI fix them. For the first time, people realized that by simply stating what you wanted, the machine could create something coherent on its own. Excitement, but also a quiet unease.</p>
-        <p>Tech giants were shaken. Google declared a “code red” internal response. Soon after, Microsoft announced a $10 billion investment in OpenAI. Headlines blared: “Will ChatGPT Kill Google Search?” and “AI Will Change the Entire Internet.”</p>
-        <figure class="article-image reveal">
-  <img src="news1.png" alt="Chart created by Remi through Midjourney">
- </figure>
- <figure class="article-image reveal">
-  <img src="news2.png" alt="Chart created by Remi through Midjourney">
- </figure>
-        <p>Before ChatGPT came out, Yifan jokes that she lived in an “era without large language models”, during math modeling competitions, she had to write every line of code by hand, with no one to ask for help. When something went wrong, she could only stare at the screen in silence. “It was a tough life,” she says with a laugh.</p>
-        <p>Now the game has completely changed. Code that used to be out of reach for many can now be generated directly by AI. Not only does it write the code, but it can also provide various model ideas and solutions. In competitions now, it’s no longer about whether you can write it, it’s about whether your thinking is right.</p>
-        <p>She adds: you knew the AI wave was unstoppable. AI is actually an effective way to solve many problems. If you resist, you’ll just be swept aside. </p>
-        <p>Yifan wasn’t the only student who felt the shift.</p>
-        <p>Linda Lam graduated from Hong Kong Baptist University with a degree in English Language Education. At the end of 2022, right after ChatGPT first launched, she got access through a university-provided overseas account, making her one of the very first users.</p>
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI begins to understand language</p>
+      <div class="ai-evolution-year">2018</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">BERT</h3>
+        <p class="ai-evolution-copy">Greatly improves how AI understands language and meaning, though it still cannot generate or reason well.</p>
+      </div>
+    </article>
+
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI starts to write</p>
+      <div class="ai-evolution-year">2020</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">GPT-3</h3>
+        <p class="ai-evolution-copy">Handles a wide range of language tasks at a near human level, but often lacks reasoning and makes mistakes.</p>
+      </div>
+    </article>
+
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI enters everyday life</p>
+      <div class="ai-evolution-year">Nov<br>2022</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">ChatGPT</h3>
+        <p class="ai-evolution-copy">Brings human-like conversation to the public, even as it remains unreliable at times.</p>
+      </div>
+    </article>
+
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI begins to simulate the world</p>
+      <div class="ai-evolution-year">2024</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">GPT-4o &amp; Sora</h3>
+        <p class="ai-evolution-copy">Moves closer to human-level perception across text, images, and video, though it still struggles with consistency.</p>
+      </div>
+    </article>
+
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI enters cognitive work</p>
+      <div class="ai-evolution-year">2025</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">DeepSeek R1 / OpenAI o1</h3>
+        <p class="ai-evolution-copy">Shows strong performance in complex reasoning like math and science, but remains imperfect and resource-intensive.</p>
+      </div>
+    </article>
+
+    <article class="ai-evolution-item">
+      <p class="ai-evolution-takeaway">AI begins to act</p>
+      <div class="ai-evolution-year">2025</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">AI Agents (e.g. OpenClaw)</h3>
+        <p class="ai-evolution-copy">Takes steps toward completing tasks autonomously instead of just answering questions, though still unstable.</p>
+      </div>
+    </article>
+
+    <article class="ai-evolution-item is-future">
+      <p class="ai-evolution-takeaway">Humans begin managing AI systems</p>
+      <div class="ai-evolution-year">2026<br>→</div>
+      <div class="ai-evolution-card">
+        <h3 class="ai-evolution-name">Integrated AI Systems</h3>
+        <p class="ai-evolution-copy">Shifts from standalone models to integrated systems handling longer, more complex tasks, with uncertainty still unresolved.</p>
+      </div>
+    </article>
+  </div>
+</section>
+<div class="prose reveal">
+       <p>Linda Lam graduated from Hong Kong Baptist University with a degree in English Language Education. At the end of 2022, right after ChatGPT first launched, she got access through a university-provided overseas account, making her one of the very first users.</p>
         <p>“At the time, you still needed U.S. IP verification. It only became widely available later with Poe.” The first time she used it, she just chatted with it for fun. Only later did she start feeding it her homework.</p>
         <p>She pasted a question into ChatGPT, and the answer it gave back was 80 to 90 percent accurate, enough to get a B+ and get by. Especially for general education assignments: short form and long form answers, even short essays. Before, she had to slowly search for information and piece things together. Now, she just threw the question in, and the answer came out. AI was so much faster.</p>
         <p>The first time she saw what AI could generate, one thought crossed her mind: “All those homework assignments I used to do, they feel so meaningless now. There’s no point in keeping them. AI can do all of it anyway.”</p>
@@ -1055,14 +1444,10 @@ footer{
         <p>“Honestly, I had my doubts too when I first encountered something new.” When she first heard about ChatGPT, her immediate reaction wasn’t “this is going to change the world.” It was, “Another shiny but useless thing.”</p>
         <p>What they didn’t know was that an era had already turned. It’s just that most people were still living on the last page.</p>
       </div>
-    </section>
+  
 
-    <section class="section" id="part-2">
-      <div class="section-header reveal">
-        <div class="section-number">02</div>
-        <h2 class="section-title"> Re-shaped Life: From Tools to Environment</h2>
-        <div class="section-rule"></div>
-      </div>
+
+
 
       <div class="pullquote reveal">
         <blockquote>“I feel like I’m being lifted by AI. It has become my external brain.”</blockquote>
@@ -1091,7 +1476,8 @@ footer{
       <div class="prose reveal">
         <p>Launched in 2022 on Discord by David Holz, Midjourney turns simple text prompts into stunning, artistic images and was already a go-to by then. In 2024, Midjourney generates <span class="stat-inline">12 million</span> images per day, and its users grew from <span class="stat-inline">16 million</span> in 2023 to over <span class="stat-inline">19 million</span> on Discord, and generated $300 million in revenue.</p>
         <p>2024 also happened to be a year of technological leaps. In February, OpenAI released Sora for video generation; in March, Adobe launched Firefly for design workflows; in June, Apple unveiled Intelligence for Siri translation, photo editing, and math solving.</p>
-        <div class="flourish-embed flourish-chart" data-src="visualisation/28668040"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28668040/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28668040"><noscript><img src="https://public.flourish.studio/visualisation/28668040/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        <p>Top model performance is converging, with 4 companies now clustered within 25 Elo points (inspired by chess ratings) when rated against one another by human voting in the Arena Leaderboard and benchmark. As of March 2026, Anthropic (1,503), xAI (1,495), Google (1,494), OpenAI (1,481), Alibaba (1,449), and DeepSeek (1,424) all occupy the top tier of the Arena Elo ratings, shifting competitive pressure toward cost, reliability, and domain-specific performance.</p>
         <p>People use AI for far more than homework. Surveys show top uses include responding to emails/texts (45%), financial questions (43%), and travel planning (38%) from National University data, plus creative writing (21%) and work tasks (15%) per Master of Code.</p>
        <p>AI also went from being a tool to being around Remi’s life.</p>
        <br>
@@ -1168,17 +1554,18 @@ footer{
       </div>
     </section>
 
-    <section class="section" id="part-3">
-      <div class="section-header reveal">
-        <div class="section-number">03</div>
-        <h2 class="section-title">Question of Value: Human Intelligence or Artificial Intelligence?</h2>
-        <div class="section-rule"></div>
-      </div>
+<section class="section" id="part-2">
+  <div class="section-header reveal">
+    <div class="section-number">02</div>
+    <h2 class="section-title">The Lost</h2>
+    <div class="section-rule"></div>
+  </div>
+
 
       <div class="prose reveal">
         <p>The shift in technology is changing not just how we do things, but seeping inward, rewiring our habits of thought, redefining what ability means, and quietly reshaping our sense of self-worth.</p>
         <p>As a junior Applied Math student at Harvard, Burnie Legette began to notice a change. He might be losing the ability to “think”.</p>
-        <p>In the past, facing a proof problem, he would have pushed himself through every step, scribbling calculations back and forth, spending hours coping a complex question. But now, whenever his thinking stuck, he would simply open a dialog with ChatGPT.</p>
+        <p>In the past, facing a proof problem, he would have pushed himself through every step, scribbling calculations back and forth, spending hours tackling a complex question. But now, whenever his thinking stuck, he would simply open a dialog with ChatGPT.</p>
 
         <figure class="article-image-portrait reveal">
   <img src="harvard.png" alt="Harvard University campus">
@@ -1193,7 +1580,7 @@ footer{
         <p>“I think that's partially because people aren't internalizing the information,” said Burnie.</p>
         <p>Burnie's concern wasn't unfounded. Multiple studies have shown that generative AI is quietly reshaping how people think.</p>
        <br>
-        <div class="flourish-embed flourish-chart" data-src="visualisation/28717410"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28717410/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28717410"><noscript><img src="https://public.flourish.studio/visualisation/28717410/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
         <p>A 2025 survey from the Higher Education Policy Institute (HEPI) and Kortext found that in higher education, most students use AI for "executive help", such as generating text, summarizing notes, or translating material to gain efficiency with minimal effort rather than for deep conceptual engagement.</p>
         <p>Research from the MIT Media Lab pointed in the same direction: students who relied heavily on AI for writing showed significantly lower brain activity and neural connectivity compared to those who completed tasks on their own, suggesting that AI may be reducing the mental effort required for deep thinking.</p>
         <p>In that study, 54 students were divided into three groups. One group wrote essays using ChatGPT. Another used only Google search. The third relied on no tools at all, just their own minds. Over three months, each student wrote three 20-minute argumentative essays.</p>
@@ -1217,6 +1604,7 @@ footer{
         <p>But as AI tools matured, that advantage began to feel fragile.</p>
         <p>In 2025, “vibe coding” became a buzzword in tech circles. It meant using natural language to direct AI to generate code, with developers barely touching the keyboard, just prompting and iterating. A New York Times reporter used AI tools to build a functioning indie game prototype, <em>Meatball Mania</em>, in just a few hours, generating the entire codebase through natural language alone.</p>
         <p>That same year, third-party analysis suggested that about <span class="stat-inline">4%</span> of public commits on GitHub could be identified as AI-generated, and the real number was likely higher.</p>
+        <div class="flourish-embed flourish-word-cloud" data-src="visualisation/28764800"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28764800/thumbnail" width="100%" alt="word-cloud visualization" /></noscript></div>
         <p>But Ginni hadn't fully embraced AI tools. He still stuck with traditional development environments, maintaining his own codebase. He knew firsthand that large language models still tend to “break” when faced with complex tasks.</p>
         <p>And yet, he had to admit: the amount of code he wrote by hand was shrinking. Faced with a feature, he would ask himself: Is it worth writing this myself? Or should I just let AI generate it and move faster?</p>
         <p>“Before, I could proudly call myself a software engineer, and a good developer meant someone who knew the syntax, who had written a lot of code,” he said. “But now, practically anyone can say that. People are starting to question whether memorizing any of these codes even matters anymore.”</p>
@@ -1227,7 +1615,7 @@ footer{
         <p>The report's core conclusion shook the industry: anyone can become a developer. Programming is no longer just for professionals. Employees from legal, marketing, and operations can now build software with AI agents. The barrier is collapsing.</p>
                <figure class="article-image reveal">
   <img src="anthropic.png" alt="AI usage visualization">
-  <figcaption>Antrophic report coverage.</figcaption>
+  <figcaption>Anthropic report coverage.</figcaption>
 </figure>
         <p>Programmers are being redefined. Building software no longer means writing code. Engineers are shifting from “coders” to “conductors”, evaluating AI output, providing direction, and ensuring the right problems get solved. Anthropic calls this new role the “AI conductor.” Those who only code are being phased out, while those with architectural and strategic skills are becoming more competitive.</p>
       </div>
@@ -1242,7 +1630,7 @@ footer{
         <p>“People pay for things they can't live without,” he said. “Like the internet. Like ChatGPT now. But a lot of what we build, it's not that.”</p>
         <figure class="article-image reveal">
   <img src="300.svg" alt="AI usage visualization">
-  <figcaption>An inforgraohic showing the identity change of developers through Anthropic 2025 report. Created by OpenAI.</figcaption>
+  <figcaption>An infographic showing the identity change of developers through Anthropic 2025 report. Created by OpenAI.</figcaption>
 </figure>
         <p>He didn't want to manufacture false necessity, to convince people through marketing and packaging that they needed something they didn't. That made the question of what to build far harder than how to build it.</p>
         <p>In an era where generative AI can already generate code, spin up prototypes, and even handle basic product design, the barrier to building has collapsed. An idea can become a working app in days, only to be abandoned or replaced just as quickly.</p>
@@ -1254,136 +1642,112 @@ footer{
       </div>
     </section>
 
-    <section class="section" id="part-4">
-      <div class="section-header reveal">
-        <div class="section-number">04</div>
-        <h2 class="section-title">To Use or Not, That's a Question</h2>
-        <div class="section-rule"></div>
-      </div>
+<section class="section" id="part-3">
+  <div class="section-header reveal">
+    <div class="section-number">03</div>
+    <h2 class="section-title">The Spilt</h2>
+    <div class="section-rule"></div>
+  </div>
 
-      <div class="prose reveal">
-        <p>At Emerson College, there is an unwritten rule.</p>
-         
-        <p>“People don't want to admit they use AI because it's embarrassing,” said Norah, a junior majoring in Journalism and minoring in Marketing. “Especially at Emerson where it's so creative-heavy.”</p>
-            <figure class="article-image reveal">
-      <img src="emerson1.png" alt="Chart created by Remi through Midjourney">
-      <figcaption>Emerson College classroom. (Shot by Hu Xinyue)</figcaption>
-    </figure>
-        <p>She told a story about a girl who joked about using ChatGPT to write an essay. The whole room went silent. No one laughed.</p>
-        <p>“It's like a ‘badge of honor’ here to do things yourself and preserve your ability to think critically.”</p>
-        <p>Norah is a writer. A creative person. And she tries to stay away from AI.</p>
-        <p>“It's a little scary to me that AI can have a ‘human voice’ and create quote-unquote ‘art,’” she said. “The process of writing and making art is so important to me and to many people, and it scares me that the process can be shortened in that way.”</p>
-        <p>As someone who publishes her work online, she also worries about copyright.</p>
-        <p>“AI could scrape my work from anywhere, even the stories I wrote for journalism class. It's weird and scary that someone could ask AI to ‘show me something Norah wrote’ and it could just pull it.”</p>
-        <p>It was finals week when we spoke. She had a lot due.</p>
-        <p>“I know I could ask AI to write a draft for me, but I don't want to. I feel proud of myself when I go through the actual process of doing the work. If I asked AI to do it, I wouldn't learn anything. College is expensive; I'm paying to be here to gain these skills, even if AI takes over some of them later.”</p>
-        <p>But the fear of AI, for some students, goes far beyond creativity.</p>
-        <p>“I want to talk about data centers,” said Elizabeth, a second-year student at New York University majoring in Forensic Psychology and planning to minor in Art.</p>
-        <p>She learned a concept in a science course last year: environmental racism.</p>
-        <p>“In Memphis, Tennessee, neighbors around a data center have reported that they can no longer open their windows because the air has become so toxic. I feel that as AI grows, conditions will only get worse for people in low-income areas.”</p>
-        <p>Norah felt the same chill.</p>
-        <p>“I read about a community in Tennessee where an AI processing plant negatively impacted the air quality, making it harder to breathe,” she said. “It reminds me of when they used to mine coal in West Virginia, leading to generations of lung cancer. It feels like we're repeating old cycles.”</p>
-        <p>Elizabeth stopped using AI at the beginning of her second year.</p>
-        <p>“I realized I was relying on it too much,” she said. “I wasn't using my full ability to write or develop my own ideas.”</p>
-        <p>Art has always been a big part of her life. She has been drawing since she was little.</p>
-        <p>“AI damages artists by taking their unique styles and recreating them,” Elizabeth said. “This often leads to situations where people are accused of using AI for work they actually hand-drew themselves. Twitter enabled a feature on every post that allows AI to edit things. This has caused many artists to leave the platform.”</p>
-        <p>She said it has gotten to the point where she has to look very closely at details to see if something is human-made or AI.</p>
-        <p>“It's sad because so much art was fed into AI without the artists' consent. Most people can't tell the difference, so they naturally favor AI because it can produce ‘difficult’ images in seconds without the need to commission a human.”</p>
-        <p>But she also acknowledged that some things AI still cannot recreate perfectly.</p>
-        <p>“Architecture, item designs, clothing, or the storytelling and specific drawing styles in animated shows, there is still value in human creation.”</p>
-        <p>When asked what she values most when choosing whether to use AI, Elizabeth gave a two-part answer: “How much water is being used, and how it is damaging the air people breathe.”</p>
-        <p>For Aubrey, a first-year at Harvard planning to major in Biology, the problem is different. She thinks people have misunderstood where AI belongs in the first place.</p>
-        <p>“Generally, I try not to use AI where it doesn't seem like it would actually do anything for me,” she said. “But I feel like people heard ‘AI,’ misinterpreted what it means, and just ran with it before fully understanding what it could be most useful for, which is data tasks and monotonous work.”</p>
-        <p>She worked in a blood pathology lab during clinicals.</p>
-        <p>“There are these cells called blasts or hemoblasts, and seeing them usually means the person is close to death. I've heard people talk about using AI to recognize those because they are very hard to identify unless you have a lot of experience. I think recognition and data work are things AI could be good for. But for creative jobs or trades, careers people have spent their entire lives mastering, I don't think AI can or should help there.”</p>
-        <p>She wants to be a medical illustrator. The person who draws the pictures for anatomy textbooks.</p>
-        <p>“That job has already been replaced a lot by AI image generation. The AI versions are worse and often anatomically incorrect, but I've seen AI images in textbooks anyway. It's unbelievable how fast it's happening.”</p>
-        <p>But she hasn't given up.</p>
-        <p>“I'm between that and medical school. If it's something I find I really enjoy as I learn more, I'd probably still go for it. If you're really passionate, you'll find a way to do it no matter what.”</p>
-        <p>Her last sentence felt like a footnote to the entire era.</p>
-        <p>“I just hope that as people learn more about AI, they use it in ways that are beneficial for humanity instead of just for monetary gain.”</p>
-        <p>But while students wrestled with whether to use AI at all, their professor, Randy Harrison, had already moved past that question.</p>
-        <p>Randy is a professor of marketing communication at Emerson College and one of the first educators to bring AI into the classroom. The day after ChatGPT was released in 2022, he had his students try using it for information retrieval tasks.</p>
-      </div>
+  <div class="prose reveal">
+    <p>After the struggle of being lost, not everyone arrived at the same answer.</p>
+    <p>Some chose to resist. Some chose to embrace. Most fell somewhere in between, still figuring out where to stand.</p>
+    <p><strong>Norah</strong> and <strong>Elizabeth</strong> share the same fear. They are the firm rejectors of AI.</p>
+    <p>At Emerson College, there is an unwritten rule.</p>
+    <p>“People don’t want to admit they use AI because it’s embarrassing,” said Norah, a junior majoring in Journalism. “Especially at Emerson where it’s so creative-heavy.”</p>
+  </div>
 
-      <figure class="full-bleed reveal">
-        <div class="placeholder" data-label="Image Placeholder / media/image3.jpeg"></div>
-        <figcaption>Placeholder for classroom or teaching-related image referenced in the feature.</figcaption>
-      </figure>
+  <figure class="article-image reveal">
+    <img src="emerson1.png" alt="Emerson College classroom">
+    <figcaption>Emerson College classroom. Shot by Hu Xinyue.</figcaption>
+  </figure>
 
-      <div class="prose reveal">
-        <p>“Some students hated it. They were scared,” he said. “But I believe when something disruptive and potentially wonderful comes along, we have no choice but to experiment with it.”</p>
-        <p>For him, “to use or not to use” was never the real question. The real question was: how to use it.</p>
-        <p>Randy distinguishes between two ways of using AI.</p>
-        <p>One is taking shortcuts, letting AI do the writing, the creating, the thinking that should come from your own mind. “That's a mistake,” he said. “If you use it to replace your gifts, you just get ‘AI slop.’”</p>
-        <p>The other is using AI to support and amplify your gifts. “You have to be under your own control, not the tool's control,” he said. “You have to query it, iterate it, frame it. The more you put in, the more you get out.”</p>
-        <p>He remembers one team whose initial submission was very rough. He gave them feedback, and a week later, their output was astonishingly good.</p>
-        <p>“They had pushed the tool to deliver, rather than just surrendering to it.”</p>
-        <p>In Randy's view, this distinction directly determines a person's competitiveness in the age of AI.</p>
-        <p>“Entry-level jobs for college graduates are changing,” he said. “Employers don't just want someone who can make social media posts, AI can do that faster. They want young people who can use these tools to deliver results. If you use AI to support and amplify your gifts rather than replace them, you're employable.”</p>
-        <p>That is why he brings AI into the classroom. Not to teach students how to use a tool, but to help them learn one thing before they enter the real world: AI can make you better, or it can make you worse. The choice is yours.</p>
-        <p>So when students ask him, “Should I use AI or not?” he doesn't give a direct answer.</p>
-        <p>“It's one thing to have an opinion,” he said. “It's another to have knowledge. I want students to play with these tools so they can make informed choices, regardless of their moral stance on them.”</p>
-        <p>Because what really matters isn't whether you use it or not.</p>
-        <p>It's whether you are in control, or being controlled.</p>
-      </div>
-    </section>
+  <div class="prose reveal">
+    <p>She told a story about a girl who joked about using ChatGPT to write an essay. The whole room went silent. No one laughed.</p>
+    <p>“It’s like a ‘badge of honor’ here to do things yourself and preserve your ability to think critically,” she said.</p>
+    <p>Norah is a writer. She stays away from AI. “It’s a little scary to me that AI can have a ‘human voice’ and create art. The process of writing and making art is so important to me and to many people. It scares me that the process can be shortened in that way.”</p>
+    <p>She also worries about copyright. Her work is published online. “AI could scrape my work from anywhere, even the stories I wrote for journalism class. It’s weird and scary that someone could ask AI to ‘show me something Norah wrote’ and it could just pull it.”</p>
+    <p>Since ChatGPT launched in November 2022, many companies have explored publishing content generated by LLMs such as ChatGPT, Claude, and Gemini to grow their traffic across channels such as Google Search, social, and advertising. This is a cost-effective alternative to spending hundreds of dollars for humans to write content.</p>
 
-    <section class="section" id="part-5">
-      <div class="section-header reveal">
-        <div class="section-number">05</div>
-        <h2 class="section-title">Future Jobs?</h2>
-        <div class="section-rule"></div>
-      </div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/28784930">
+      <noscript>
+        <img src="https://public.flourish.studio/visualisation/28784930/thumbnail" width="100%" alt="chart visualization" />
+      </noscript>
+    </div>
 
-      <div class="prose reveal">
-        <p>While most of her peers were still figuring out how to ask questions to AI, Linda Lam had already turned it into a business.</p>
-        <p>Her logic was simple and direct: most people don't know how to write prompts, and that's an opportunity. For Linda, AI was the booster she used to start a business and create an information gap.</p>
-        <p>“Knowing how to use AI is itself an advantage,” she said. She grew up without internet or mobile phones before college, relying on printed reference books. Back then, when practicing for the college entrance exam, she would memorize “canned phrases” and good sentences from sample essays, then plug them into her own writing. “But now, if there's a tool that can immediately grade my essay, give an accurate score, and generate a ‘level-up’ version based on my original writing, I would find it much easier to learn. And that tool is AI.”</p>
-        <p>In her senior year, she teamed up with Tentent, a computer science student from Hong Kong Baptist University, and other classmates to develop an AI platform called Greypad, designed to grade DSE Chinese composition papers. Essentially, it was a packaged prompt system with OCR recognition, students just needed to take a photo of their handwritten essay and upload it. The platform would then provide AI grading and an upgraded sample essay. They received 30,000 HKD in startup funding from the university's “Start-up Saturday” program and successfully entered the Science Park. Today, Greypad has over 1,800 regular users per year, mainly partnering with tutoring centers to provide AI grading services for territory-wide mock exams.</p>
-          <figure class="article-image-portrait reveal">
-  <img src="linda.png" alt="Linda Lam and her teammates">
-  <figcaption>Linda Lam and her teammates at Greypad. Photo provided by Linda.</figcaption>
-</figure>
-        <p>“Many students coming from the mainland don't have this AI awareness,” she said. “Mastering AI means mastering 60% of the initiative in learning.”</p>
-        <p>In her view, AI is an excellent vehicle for low-cost entrepreneurship. Being a teacher means exchanging physical and mental effort for money, there's a ceiling. But entrepreneurship offers continuous returns. Clients accumulate. Teams grow. There's no end to it.</p>
-        <p>“AI has made me less worried about being an employee. Being a teacher in Hong Kong pays well and is stable, but it's the same thing day after day. Entrepreneurship makes me anxious every day because I constantly have to innovate, but it's so much more interesting.”</p>
-        <p>But she also knows the limits of AI. “AI's error rate is currently between 10% and 20%, but the margin for error in the workplace might be only 1%. AI hallucinates. It can't replace rigorous work.” She believes the most valuable skills are adaptability and emotional intelligence. A teacher faces parents and unexpected situations, student problems that fall outside AI's predictions. “AI can only tell you what mistake a student made. Only a teacher can figure out, through conversation, why they made it.”</p>
-        <p>As for the future, she has a clear timeline: “In another five to ten years, most people's understanding and use of AI will reach where I am now. To go deeper, you need coding, and that's for computer science people. So my plan is to make a bit more money in the next five to ten years promoting AI, then retire and become a housewife.”</p>
-        <p>She paused, then laughed. “My partner handles the coding. I'm not going to learn it myself.”</p>
-        <p>Yifan's situation was more complicated.</p>
-        <p>She was interning at an AI startup, but she described the experience as “tragic.”</p>
-        <p>“Every day I talk to an AI agent. I'm learning nothing. Sometimes the agent gets more and more wrong, and I don't even know where to start correcting it. It's a negative feedback loop. Because I don't understand it, I can't use AI well. When it makes mistakes, I don't know why, so I just keep talking to it until it randomly gets it right.”</p>
-        <p>She felt the internship was a bit of a rip-off. “My boss is just extracting labor from me. And I'm left wondering, what am I actually learning from talking to an AI agent every day?”</p>
-        <p>She called herself “old-school.” She didn't trust AI that much. “In my eyes, a large language model is just a probabilistic model. You can't rely on it completely. The quality of what it produces is sometimes poor, it gets things done, but not in a clean, elegant way.” So she currently works with a mix of manual and AI-assisted approaches.</p>
-        <p>But she admitted that AI was reshaping the entire industry.</p>
-        <p>“Where is the boundary of what AI can achieve as it grows exponentially? Which jobs will disappear entirely?” She noted that basic front-end work at big tech companies is already fully AI-generated. “In 2023 and 2024, as a student, you could make good money doing front-end work for others. But that logic no longer holds. Certain computer science jobs are disappearing.”</p>
-        <p>Asked how she coped with the uncertainty, her answer was honest: “There's no choice. After ChatGPT came out, you knew the AI wave was unstoppable. Resist, and you'll just be swept aside. The computer science industry is being hit hard, you have to swim upstream. And AI is truly an effective way to solve a lot of problems.”</p>
-      </div>
+    <p>Starting from a point where humans produced almost all digital material, the landscape began to change rapidly as AI-generated content saw a massive surge starting in 2023. Over the same period, the share of content created by people steadily dropped. By early 2025, these two trends officially crossed, with AI-generated work now making up 51.7% of the total, surpassing human-made content for the first time.</p>
+    <p>“I feel proud of myself when I go through the actual process of doing the work. If I asked AI to do it, I wouldn't learn anything. College is expensive; I’m paying to be here to gain these skills, even if AI takes over some of them later,” said Norah.</p>
+    <p>Elizabeth, a second-year student at NYU studying Forensic Psychology, shares the same resistance. She stopped using AI at the beginning of her second year. “I realized I was relying on it too much. I wasn’t using my full ability to write or develop my own ideas.”</p>
+    <p>Art has always been a big part of her life. She has been drawing since she was little. “AI damages artists by taking their unique styles and recreating them. This often leads to situations where people are accused of using AI for work they actually hand-drew themselves.”</p>
+    <p>She has seen artists leave Twitter after the platform enabled AI training on every post. “It’s sad because so much art was fed into AI without the artists’ consent. Most people can’t tell the difference, so they naturally favor AI because it can produce ‘difficult’ images in seconds without the need to commission a human.”</p>
+    <p>But her deepest concern is environment. She learned about “environmental racism” in a science course. “In Memphis, Tennessee, neighbors around a data center have reported that they can no longer open their windows because the air has become so toxic. I feel that as AI grows, conditions will only get worse for people in low-income areas.”</p>
+  </div>
 
-      <div class="pullquote reveal">
-        <blockquote>“Don’t reject it. Embrace it. Use it. Feel it. Even the panic, that’s a real feeling too.”</blockquote>
-        <cite>Yifan</cite>
-      </div>
+  <figure class="article-image reveal">
+    <img src="tennessee.jpg" alt="Tennessee data center protest">
+    <figcaption>Tennessee State Rep. Justin Pearson speaks in opposition to a plan by Elon Musk's xAI to use gas turbines for a new data center during a rally outside of Fairley High School ahead of a public comment meeting in Memphis, Tennessee, on April 25, 2025.</figcaption>
+    <figcaption>THE WASHINGTON POST VIA GETTY IMAGES</figcaption>
+  </figure>
 
-      <div class="prose reveal">
-        <p>The hiring market was shifting too, quietly but unmistakably.</p>
-        <p>Caridee, an HR professional in Hong Kong, watched it happen in real time. Companies had started using AI for keyword matching, and they were preferring “exact matches” over “people with potential.” The line between technical and non-technical roles was blurring. At startups, business people were using AI to write code, and technical founders were using AI to analyze markets.</p>
-        <p>“Don't be too optimistic, but don't be too pessimistic either,” she said. “Use AI to focus on what you truly value.”</p>
-        <p>But then there was Phili.</p>
-        <p>Phili was an old-school programmer, the kind who had been writing code since before most of today's students were born. And when everyone else was drawing a clean line between “humans do architecture, AI does execution,” he just shook his head.</p>
-        <p>“I feel sorry for people who think that way,” he said.</p>
-        <p>He had already started discussing architecture with AI. Letting AI give him advice. “AI's knowledge goes beyond my range.” He believed that the real skill that mattered now wasn't something you learned from a book, it was something you tried and failed at. The ability to manage someone, or something, that was better than you in every way.</p>
-        <p>“AI offers nonlinear ideas. Conversations you would never have with another human being.”</p>
-        <p>His advice was simple and brutal: “Try to use AI to replace yourself. Go all in. At least 20% of your work should be AI-driven, let AI understand your priorities.”</p>
-        <p>He admitted the process was painful. “Training AI is painful. But it's a necessary hurdle. Learning to manage AI is the direction we need to move in. You need a lot of exposure. Train AI in different environments. Use it over and over again.”</p>
-      </div>
+  <div class="prose reveal">
+    <p>While Norah and Elizabeth turn away from AI, <strong>Linda Lam</strong> ran straight toward it. She turned it into a business.</p>
+    <p>Her logic was simple: most people don't know how to write prompts. That's an opportunity.</p>
+    <p>Linda grew up without internet or mobile phones before college, relying on printed reference books. For exams, she memorized "canned phrases" from sample essays. Now she sees AI as a booster. "Knowing how to use AI is itself an advantage," she says.</p>
+    <p>In her senior year at Hong Kong Baptist University, she co-founded Greypad, an AI platform that grades DSE Chinese composition papers. Students take a photo of their handwritten essay; the AI grades it and generates an upgraded version. The platform now has over 1,800 regular users. She received 30,000 HKD in startup funding and entered Hong Kong's Science Park.</p>
+  </div>
 
-      <figure class="full-bleed reveal">
-        <div class="placeholder" data-label="Image Placeholder / media/image4.png"></div>
-        <figcaption>Placeholder for labor-market, startup, or future-of-work visual referenced in the article.</figcaption>
-      </figure>
-    </section>
+  <figure class="article-image reveal">
+    <img src="linda.png" alt="Linda Lam and her teammates at Greypad">
+    <figcaption>Linda Lam and her teammates at Greypad. Photo provided by Linda.</figcaption>
+  </figure>
+
+  <div class="prose reveal">
+    <p>"Many students coming from the mainland don't have this AI awareness," she says. "Mastering AI means mastering 60 percent of the initiative in learning."</p>
+    <p>She knows AI's limits. "AI's error rate is between 10 and 20 percent, but the margin for error in the workplace might be only 1 percent. AI hallucinates. It can't replace rigorous work." Still, she has a clear timeline: five to ten years of making money with AI, then retirement.</p>
+    <p>"AI has made me less worried about being employed," she says. "Entrepreneurship makes me busy every day because I have to constantly innovate, it's so much more interesting."</p>
+    <p><strong>Tina</strong> found a way to stop being anxious.</p>
+    <p>A Ph.D. student at the Chinese University of Hong Kong working in medical data analysis, she initially worried about being replaced. “Writing code and running pipelines—that’s the kind of thing that’s easiest to automate.”</p>
+    <p>But then she saw AI help a labmate fill a gap in coding skills. Her labmate had great ideas but weaker hands-on abilities. AI bridged that gap. That’s when Tina realized: when execution is no longer the bottleneck, having good ideas becomes critically important.</p>
+    <p>She started using AI more deeply. “Discussing things with AI cuts the time I spend searching through information and academic articles. When I have a research idea, I talk to it. It gives me a plan. Then I evaluate it.”</p>
+    <p>She feels like she has become the “captain of the ship.” “You have to be the one in control. You can’t just let AI lead you by the nose. You have to be able to judge what it writes. If I haven’t read other people’s work, I can’t tell whether what AI wrote is any good.”</p>
+    <p>Her theory: a half glass of water. “Some people see that half-empty glass and think—‘I’m going to be replaced.’ They give up. The other mindset is to use it as a tool. Learn from it. Use it to become better yourself.”</p>
+    <p>She is no longer anxious about being replaced.</p>
+    <p>Not everyone picks a side. <strong>Yifan</strong> stays in the middle, not resisting, not surrendering, just trying to figure out her own pace.</p>
+    <p>Yifan doesn’t trust AI, but she uses it. She doesn’t resist the wave, but she refuses to drown in it. Her compromise is a hybrid: manual work with AI assistance. Let the machine handle the grunt work, but keep her own hands on the wheel.</p>
+    <p>“I’m probably old-school,” she admits. In her eyes, a large language model is just a probability machine. It gets things done, but rarely the way she wants. Still, she knows the wave is unstoppable. “Resist, and you’ll be swept aside.”</p>
+    <p>So she swims upstream. She lets AI provide convenience, lets it save her brain for the hard problems. But she also holds something back. “If you don’t turn yourself into a pure tool-user, you won’t feel the crisis of being replaced.”</p>
+    <p>That is her line. She still holds onto the human part: the messy thinking, the slow struggle, the things AI cannot feel for her.</p>
+    <p>“Don’t reject it,” she says. “Embrace it. Use it. Feel it. Even panic, that’s a real feeling too.”</p>
+  </div>
+</section>
+
+
+<section class="section" id="part-4">
+  <div class="section-header reveal">
+    <div class="section-number">04</div>
+    <h2 class="section-title">The Future Ahead</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="prose reveal">
+    <p>While students wrestled with their own choices, the world outside campus was watching. And it had its own answers.</p>
+    <p>Caridee, an HR professional in Hong Kong, saw the shift in real time. Companies had started using AI for keyword matching, preferring exact matches over people with potential. The line between technical and non-technical roles was blurring. At startups, business people were using AI to write code, and technical founders were using AI to analyze markets.</p>
+    <p>“Don’t be too optimistic, but don’t be too pessimistic either,” she said. “Use AI to focus on what you truly value.”</p>
+    <p>Marc Hamilton, Vice President at NVIDIA, offered reassurance. “Please, keep studying computer science,” he said. “No AI is going to say, ‘Please write the AI code for the next chip.’ That won’t happen within the students’ lifetimes.”</p>
+    <p>But he also acknowledged the shift. “The job for many computer scientists was to work with other experts to write the software for them. Now, for the first time in history, anyone can write software. The role is shifting to whether you understand the system.” He offered an analogy: a plane on autopilot still needs a pilot. “You need a human’s fast thinking and reaction skills to steer to safety.”</p>
+    <p>Randy Harrison, a professor at Emerson College, had been thinking about this longer than most. The day after ChatGPT launched, he had his students try it. Some were scared. But he pushed forward.</p>
+    <p>For Randy, “to use or not to use” was never the real question. The real question was how to use it. He distinguishes between two ways. One is taking shortcuts, letting AI do the thinking that should come from your own mind. “That’s a mistake. If you use it to replace your gifts, you just get AI slop.” The other is using AI to support and amplify your gifts. “You have to be under your own control, not the tool’s control. The more you put in, the more you get out.”</p>
+    <p>Then there was Phili. He was an old school programmer, the kind who had been writing code since before most of today’s students were born. When others drew a clean line between “humans do architecture, AI does execution,” he just shook his head.</p>
+    <p>“I feel sorry for people who think that way,” he said.</p>
+    <p>He had already started discussing architecture with AI, letting it give him advice. “AI’s knowledge goes beyond my range.” The real skill that mattered now wasn’t something you learned from a book. It was the ability to manage someone, or something, that was better than you in every way.</p>
+    <p>His advice was simple and direct. “Try to use AI to replace yourself. Go all in. At least 20 percent of your work should be AI driven. Let AI understand your priorities. Learning to manage AI is the direction we need to move in.”</p>
+    <p>Three voices. One from HR. One from the industry. One from the old school. They didn’t agree on everything, but they all said the same thing: the students could not afford to stand still.</p>
+    <p>Yifan questioned: “With AI growing exponentially, where is the boundary? Which jobs will disappear entirely?”</p>
+    <p>She doesn’t know where her own future will go. But she didn’t stop, waiting for a clear map. She kept going, exploring, and venturing, believes that she will find her direction.</p>
+    <p>The wave came for her. It came for all of them. And it was not done yet.</p>
+  </div>
+</section>
+
 
     <section class="section" id="outro">
       <div class="section-header reveal">
@@ -1411,24 +1775,33 @@ footer{
   </main>
 
   <script>
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.12 });
 
-  document.querySelectorAll(".reveal").forEach((el) => {
-    revealObserver.observe(el);
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
   });
+}, {
+  threshold: 0,
+  rootMargin: "0px 0px -8% 0px"
+});
+
+document.querySelectorAll(".reveal").forEach((el) => {
+  if (el.offsetHeight > window.innerHeight * 1.2) {
+    el.classList.add("visible");
+  } else {
+    revealObserver.observe(el);
+  }
+});
+
 
  const sections = [
-  { id: "part-1", label: "The Moment" },
-  { id: "part-2", label: "Re-shaped Life" },
-  { id: "part-3", label: "Question of Value" },
-  { id: "part-4", label: "Use or Not" },
-  { id: "part-5", label: "The Future" }
+  { id: "part-1", label: "The Wave" },
+  { id: "part-2", label: "The Lost" },
+  { id: "part-3", label: "The Split" },
+  { id: "part-4", label: "The Future Ahead" }
 ];
 
 
@@ -1466,41 +1839,45 @@ footer{
   sectionEls.forEach((section) => sectionObserver.observe(section));
 
   function updateProgressByScroll() {
-    if (!fill || !sectionEls.length) return;
+  if (!fill || !sectionEls.length) return;
 
-    let activeIndex = sectionEls.findIndex((section) => {
-      const rect = section.getBoundingClientRect();
-      return rect.top <= window.innerHeight * 0.35 && rect.bottom > window.innerHeight * 0.35;
-    });
+  let activeIndex = sectionEls.findIndex((section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= window.innerHeight * 0.18 && rect.bottom > window.innerHeight * 0.18;
+  });
 
-    if (activeIndex < 0) activeIndex = 0;
-
-    const activeSection = sectionEls[activeIndex];
-    const nextSection = sectionEls[activeIndex + 1];
-
-    tabs.forEach((tab, i) => {
-      tab.classList.toggle("active", i === activeIndex);
-    });
-
-    if (!nextSection) {
-      fill.style.width = "100%";
-      return;
-    }
-
-    const base = (activeIndex / (sections.length - 1)) * 100;
-    const next = ((activeIndex + 1) / (sections.length - 1)) * 100;
-
-    const start = activeSection.offsetTop - window.innerHeight * 0.35;
-    const end = nextSection.offsetTop - window.innerHeight * 0.45;
-    const local = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start || 1)));
-
-    fill.style.width = (base + (next - base) * local) + "%";
+  if (activeIndex < 0) {
+    fill.style.width = "0%";
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    return;
   }
 
+  const activeSection = sectionEls[activeIndex];
+  const nextSection = sectionEls[activeIndex + 1];
+
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle("active", i === activeIndex);
+  });
+
+  if (!nextSection) {
+    fill.style.width = "100%";
+    return;
+  }
+
+  const base = (activeIndex / (sections.length - 1)) * 100;
+  const next = ((activeIndex + 1) / (sections.length - 1)) * 100;
+
+  const start = activeSection.offsetTop - window.innerHeight * 0.18;
+  const end = nextSection.offsetTop - window.innerHeight * 0.18;
+  const local = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start || 1)));
+
+  fill.style.width = (base + (next - base) * local) + "%";
+}
   window.addEventListener("scroll", updateProgressByScroll, { passive: true });
   window.addEventListener("resize", updateProgressByScroll);
 
-  setActiveSection(0);
+
+
   updateProgressByScroll();
   
 
@@ -1576,6 +1953,31 @@ footer{
 
   remiSteps.forEach((step) => remiObserver.observe(step));
   playRemiScene("assignments");
+
+const introScrolly = document.querySelector(".intro-scrolly");
+const introLines = Array.from(document.querySelectorAll(".intro-line"));
+
+function updateIntroScroll() {
+  if (!introScrolly || !introLines.length) return;
+
+  const rect = introScrolly.getBoundingClientRect();
+  const total = introScrolly.offsetHeight - window.innerHeight;
+  const passed = Math.min(Math.max(-rect.top, 0), total);
+  const progress = total > 0 ? passed / total : 0;
+  const index = Math.min(
+    introLines.length - 1,
+    Math.max(0, Math.floor(progress * introLines.length))
+  );
+
+  introLines.forEach((line, i) => {
+    line.classList.toggle("active", i === index);
+  });
+}
+
+window.addEventListener("scroll", updateIntroScroll, { passive: true });
+window.addEventListener("resize", updateIntroScroll);
+updateIntroScroll();
+
 
 const immersiveHero = document.querySelector(".hero-immersive");
 const heroOverlay = document.getElementById("heroOverlay");
